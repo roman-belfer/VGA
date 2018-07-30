@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="VGA.Filter.Views.FilterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="LightGray">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Label Content="Выбрать критерии для поиска" FontSize="20" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Рост: " Width="40"/>
+                    <Label Content=" От: " />
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HeightCollection}"/>
+                    <Label Content=" До: " />
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HeightCollection}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Вес:  " Width="40"/>
+                    <Label Content=" От: " />
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding WeightCollection}"/>
+                    <Label Content=" До: " />
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding WeightCollection}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="4">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Опыт работы:"/>
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding ExpirienceCollection}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="6">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Воинское звание:"/>
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding MilitaryCollection}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="8">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Спортивные достижения: " />
+                    <CheckBox VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Наличие пистолета: "/>
+                    <RadioButton Name="noShortgun" GroupName="shortguns" IsChecked="True" Content="Нет" VerticalAlignment="Center" Margin="10 0" />
+                    <RadioButton Name="traumaticShortgun" GroupName="shortguns" Content="Травматический" VerticalAlignment="Center" Margin="10 0" />
+                    <RadioButton Name="shortgun" GroupName="shortguns" Content="Боевой" VerticalAlignment="Center" Margin="10 0" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="12">
+                <StackPanel Orientation="Horizontal" Margin="157 0 0 0"
+                        Visibility="{Binding Path=IsChecked, ElementName=shortgun, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ComboBox Width="80" SelectedIndex="0" Margin="0 0 10 0" DisplayMemberPath="Value" ItemsSource="{Binding HandgunCollection}"/>
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HandgunBulletCollection}"/>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="14">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Наличие автомата: "/>
+                    <CheckBox Name="minigun" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="16">
+                <StackPanel Orientation="Horizontal" Margin="157 0 0 0"
+                        Visibility="{Binding Path=IsChecked, ElementName=minigun, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ComboBox Width="80" SelectedIndex="0" Margin="0 0 10 0" DisplayMemberPath="Value" ItemsSource="{Binding RifleCollection}"/>
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding RifleBulletCollection}"/>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="18">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Прохождение курсов: "/>
+                    <Label Content="(?) " ToolTip="Прохождение курсов телохранителей с присвоением профессии 'ОХОРОНЕЦЬ'" />
+                    <CheckBox VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="20">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Водительские права: "/>
+                    <CheckBox Name="driveLicenseCheckbox" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="22">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsChecked, ElementName=driveLicenseCheckbox, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Label Content="Опыт вождения машин класа VIP: "/>
+                    <CheckBox VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Button Content="Искать" Grid.Row="4" Width="100" Height="25"
+                Command="{Binding SearchCommand}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="VGA.Index.Views.IndexView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="LightGray"
+             Name="indexView">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Path=BodyguardCollection, Mode=TwoWay}"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Rate}" Header="Рейтинг" MinWidth="50" SortDirection="Descending"
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Имя" Width="200" 
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="150" 
+                                    IsReadOnly="True"/>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Детально" Width="100" 
+                                    Command="{Binding Path=DataContext.DetailCommand, ElementName=indexView}"
+                                    CommandParameter="{Binding ID}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

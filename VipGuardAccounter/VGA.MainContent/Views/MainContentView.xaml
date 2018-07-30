@@ -1,0 +1,32 @@
+﻿<Window x:Class="VGA.MainContent.Views.MainContentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="900">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Label Content="VIP GUARD"                
+               Foreground="Black" 
+               FontSize="70"
+               FontWeight="Black" 
+               FontStyle="Italic" 
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Opacity="0.1"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ContentControl Content="{Binding MenuView}"
+                            Visibility="{Binding IsMenuVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
+            <ContentControl Grid.Row="2"
+                        Content="{Binding CurrentView}" />
+        </Grid>
+    </Grid>
+</Window>
