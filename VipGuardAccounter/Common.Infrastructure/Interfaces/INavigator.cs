@@ -6,6 +6,7 @@
         void Index();
         void Filter();
         void Detail();
+        void Edit();
 
         void Back();
 

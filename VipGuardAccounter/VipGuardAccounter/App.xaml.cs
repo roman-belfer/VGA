@@ -6,6 +6,7 @@ using Common.Navigation;
 using Common.Repository;
 using System.Windows;
 using VGA.Detail.Views;
+using VGA.Editor.Views;
 using VGA.Filter.Views;
 using VGA.Index.Views;
 using VGA.MainContent;
@@ -32,6 +33,7 @@ namespace VipGuardAccounter
             Container.Register<IFilterView, FilterView>();
             Container.Register<IIndexView, IndexView>();
             Container.Register<IMenuView, MenuView>();
+            Container.Register<IEditView, EditView>();
         }
     }
 }

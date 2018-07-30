@@ -15,6 +15,7 @@ namespace Common.Navigation
         private IView _filterView;
         private IView _indexView;
         private IView _detailView;
+        private IView _editView;
 
         public Navigator()
         {
@@ -51,6 +52,15 @@ namespace Common.Navigation
             _detailView = _detailView ?? Resolve<IDetailView>();
 
             UpdateView(_detailView);
+
+            RaiseViewChanged();
+        }
+
+        public void Edit()
+        {
+            _editView = _editView ?? Resolve<IEditView>();
+
+            UpdateView(_editView);
 
             RaiseViewChanged();
         }

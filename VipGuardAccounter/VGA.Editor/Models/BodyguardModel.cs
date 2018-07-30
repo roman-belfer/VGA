@@ -2,11 +2,10 @@
 using System;
 using System.Windows.Media.Imaging;
 
-namespace VGA.Detail.Models
+namespace VGA.Editor.Models
 {
     public class BodyguardModel : ICloneable
     {
-        public uint ID { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
         public short Age { get; set; }
@@ -28,7 +27,6 @@ namespace VGA.Detail.Models
                     FirstName = dto.BaseInfo.FirstName,
                     SurName = dto.BaseInfo.SurName,
                     LastName = dto.BaseInfo.LastName,
-                    ID = dto.BaseInfo.ID
                 };
 
                 result.FullName = $"{result.LastName} {result.FirstName} {result.SurName}";
@@ -41,7 +39,6 @@ namespace VGA.Detail.Models
         {
             return new BodyguardModel()
             {
-                ID = ID,
                 FirstName = FirstName,
                 SurName = SurName,
                 LastName = LastName,

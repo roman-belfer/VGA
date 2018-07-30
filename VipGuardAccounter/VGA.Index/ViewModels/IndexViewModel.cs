@@ -2,6 +2,7 @@
 using Common.Infrastructure.DataModels;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
+using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
 using System.Collections.ObjectModel;

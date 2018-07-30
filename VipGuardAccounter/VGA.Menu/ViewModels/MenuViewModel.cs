@@ -1,5 +1,6 @@
 ﻿using Common.Infrastructure;
 using Common.Infrastructure.Interfaces;
+using Common.MVVM;
 using Prism.Commands;
 
 namespace VGA.Menu.ViewModels

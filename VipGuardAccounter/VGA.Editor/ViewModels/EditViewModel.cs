@@ -4,11 +4,11 @@ using Common.Infrastructure.Interfaces;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
-using VGA.Detail.Models;
+using VGA.Editor.Models;
 
-namespace VGA.Detail.ViewModels
+namespace VGA.Editor.ViewModels
 {
-    public class DetailViewModel : BaseViewModel
+    public class EditViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
         private readonly IBodyguardRepository _repository;
@@ -16,13 +16,13 @@ namespace VGA.Detail.ViewModels
 
         private BodyguardModel _bodyguard;
 
-        public DetailViewModel()
+        public EditViewModel()
         {
             _navigator = Container.Resolve<INavigator>();
             _repository = Container.Resolve<IBodyguardRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
-            _eventAggregator.GetEvent<DataEvents.DetailEvent>().Subscribe(OnDetail, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<DataEvents.EditEvent>().Subscribe(OnEdit, ThreadOption.UIThread);
         }
 
         public BodyguardModel Bodyguard
@@ -38,23 +38,40 @@ namespace VGA.Detail.ViewModels
             }
         }
 
-        public DelegateCommand EditCommand
+        public DelegateCommand SaveCommand
         {
-            get { return new DelegateCommand(OnEdit); }
+            get { return new DelegateCommand(OnSave); }
         }
 
-        private void OnEdit()
+        public DelegateCommand CancelCommand
         {
-            _navigator.Edit();
-
-            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(_bodyguard.ID);
+            get { return new DelegateCommand(OnCancel); }
         }
 
-        private void OnDetail(uint id)
+        private void OnCancel()
         {
-            var detailDto = _repository.GetBodyguardDetails(id);
+            _navigator.Back();
+        }
 
-            Bodyguard = BodyguardModel.ConvertToModel(detailDto);
+        private void OnSave()
+        {
+            //TO DO: Saving Logic
+
+            _navigator.Back();
+        }
+
+        private void OnEdit(uint? id)
+        {
+            if (id.HasValue)
+            {
+                var detailDto = _repository.GetBodyguardDetails(id.Value);
+
+                Bodyguard = BodyguardModel.ConvertToModel(detailDto);
+            }
+            else
+            {
+                Bodyguard = new BodyguardModel();
+            }
         }
     }
 }

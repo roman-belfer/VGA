@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Common.Infrastructure
+namespace Common.MVVM
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

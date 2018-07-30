@@ -103,6 +103,10 @@
       <Project>{A9B3762E-7371-4662-8A34-C8E0A4D9B607}</Project>
       <Name>VGA.Detail</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VGA.Editor\VGA.Editor.csproj">
+      <Project>{0E118E3E-48D8-4E50-B95B-CDC162882930}</Project>
+      <Name>VGA.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VGA.Filter\VGA.Filter.csproj">
       <Project>{47A7BA2D-B121-4494-B72B-8833DB8017F8}</Project>
       <Name>VGA.Filter</Name>

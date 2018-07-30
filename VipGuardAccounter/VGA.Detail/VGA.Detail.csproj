@@ -63,6 +63,10 @@
       <Project>{5BAC05BD-2FD1-481C-A5F4-AF5FAB8AEBB0}</Project>
       <Name>Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.MVVM\Common.MVVM.csproj">
+      <Project>{c2c54b2a-7b05-4021-b0d3-4a652c56a6cd}</Project>
+      <Name>Common.MVVM</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\DetailView.xaml">

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VGA.Detail.Views.DetailView"
+﻿<UserControl x:Class="VGA.Editor.Views.EditView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="LightGray">
@@ -50,12 +50,17 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="180"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
-            <Button Content="Редактировать" 
+
+            <Button Content="Сохранить" 
                     Grid.Column="1"
-                    Command="{Binding EditCommand}"/>
+                    Command="{Binding SaveCommand}"/>
+            <Button Content="Отменить" 
+                    Grid.Column="1"
+                    Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

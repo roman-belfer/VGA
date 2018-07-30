@@ -2,6 +2,7 @@
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Views;
+using Common.MVVM;
 using Prism.Events;
 
 namespace VGA.MainContent.ViewModels
