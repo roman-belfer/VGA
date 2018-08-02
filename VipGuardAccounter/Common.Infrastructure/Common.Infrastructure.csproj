@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\IMainModule.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\INavigator.cs" />
+    <Compile Include="Interfaces\Views\IStartMenuView.cs" />
     <Compile Include="Interfaces\Repositories\IBodyguardRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDictionaryRepository.cs" />
     <Compile Include="Interfaces\Views\IDetailView.cs" />

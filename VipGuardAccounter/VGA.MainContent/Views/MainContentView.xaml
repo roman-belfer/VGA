@@ -9,24 +9,14 @@
     </Window.Resources>
 
     <Grid>
-        <Label Content="VIP GUARD"                
-               Foreground="Black" 
-               FontSize="70"
-               FontWeight="Black" 
-               FontStyle="Italic" 
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center"
-               Opacity="0.1"/>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <ContentControl Content="{Binding MenuView}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding MenuView}"
                             Visibility="{Binding IsMenuVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
-            <ContentControl Grid.Row="2"
+        <ContentControl Grid.Row="2"
                         Content="{Binding CurrentView}" />
-        </Grid>
     </Grid>
 </Window>

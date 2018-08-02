@@ -123,6 +123,13 @@
       <Project>{FF7217F5-25EA-4323-B93B-B584AFF3B325}</Project>
       <Name>VGA.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VGA.StartMenu\VGA.StartMenu.csproj">
+      <Project>{03BC2178-CE67-4CDF-A9E5-9475A6698B02}</Project>
+      <Name>VGA.StartMenu</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.MVVM", "Common.MVVM\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGA.Editor", "VGA.Editor\VGA.Editor.csproj", "{0E118E3E-48D8-4E50-B95B-CDC162882930}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGA.StartMenu", "VGA.StartMenu\VGA.StartMenu.csproj", "{03BC2178-CE67-4CDF-A9E5-9475A6698B02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{0E118E3E-48D8-4E50-B95B-CDC162882930}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E118E3E-48D8-4E50-B95B-CDC162882930}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E118E3E-48D8-4E50-B95B-CDC162882930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03BC2178-CE67-4CDF-A9E5-9475A6698B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BC2178-CE67-4CDF-A9E5-9475A6698B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BC2178-CE67-4CDF-A9E5-9475A6698B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BC2178-CE67-4CDF-A9E5-9475A6698B02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,7 @@ namespace Common.Navigation
 
         private IView _currentView;
 
+        private IView _startMenuView;
         private IView _filterView;
         private IView _indexView;
         private IView _detailView;
@@ -27,6 +28,15 @@ namespace Common.Navigation
             LaunchMain();
 
             LaunchFirstView();
+        }
+
+        public void StartMenu()
+        {
+            _startMenuView = _startMenuView ?? Resolve<IStartMenuView>();
+
+            UpdateView(_startMenuView);
+
+            RaiseViewChanged();
         }
 
         public void Index()
@@ -95,7 +105,7 @@ namespace Common.Navigation
 
         private void LaunchFirstView()
         {
-            Filter();
+            StartMenu();
         }
 
         private void LaunchMain()
