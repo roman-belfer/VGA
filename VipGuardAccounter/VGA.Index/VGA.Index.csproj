@@ -51,12 +51,19 @@
   <ItemGroup>
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
+    <Compile Include="Views\IndexGridView.xaml.cs">
+      <DependentUpon>IndexGridView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\IndexGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +78,10 @@
     <ProjectReference Include="..\Common.MVVM\Common.MVVM.csproj">
       <Project>{C2C54B2A-7B05-4021-B0D3-4A652C56A6CD}</Project>
       <Name>Common.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{c5a9fe9e-60cc-4d12-88b6-cadabc1ff7df}</Project>
+      <Name>Common.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

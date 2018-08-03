@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Events;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using VGA.Index.Models;
 
 namespace VGA.Index.ViewModels
@@ -17,6 +18,7 @@ namespace VGA.Index.ViewModels
         private readonly IBodyguardRepository _repository;
         private readonly IEventAggregator _eventAggregator;
 
+        private bool _isDataLoading;
         private ObservableCollection<IndexModel> _bodyguardCollection;
 
         private DelegateCommand<uint?> _detailCommand;
@@ -28,6 +30,21 @@ namespace VGA.Index.ViewModels
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
             _eventAggregator.GetEvent<SearchEvents.SearchParameterEvent>().Subscribe(OnSearch, ThreadOption.UIThread);
+
+            InitCollection();
+        }
+
+        public bool IsDataLoading
+        {
+            get { return _isDataLoading; }
+            set
+            {
+                if (_isDataLoading != value)
+                {
+                    _isDataLoading = value;
+                    OnPropertyChanged(nameof(IsDataLoading));
+                }
+            }
         }
 
         public ObservableCollection<IndexModel> BodyguardCollection
@@ -46,11 +63,27 @@ namespace VGA.Index.ViewModels
         public DelegateCommand<uint?> DetailCommand =>
             _detailCommand ?? (_detailCommand = new DelegateCommand<uint?>(OnDetail));
 
+        private void InitCollection()
+        {
+            OnSearch(null);
+        }
+
         private void OnSearch(SearchParameters searchParams)
         {
-            var bodyguardsCollection = _repository.GetBodyguardsCollection(searchParams);
+            IsDataLoading = true;
+
+            Task.Run(async () => await SearchAsync(searchParams));
+        }
+
+        private async Task SearchAsync(SearchParameters searchParams)
+        {
+            var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
             var models = IndexModel.ConvertFromDto(bodyguardsCollection);
             BodyguardCollection = new ObservableCollection<IndexModel>(models.OrderByDescending(x => x.Rate));
+
+            await Task.Delay(4000);
+
+            IsDataLoading = false;
         }
 
         private void OnDetail(uint? id)

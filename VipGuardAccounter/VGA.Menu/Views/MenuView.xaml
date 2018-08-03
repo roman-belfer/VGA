@@ -1,5 +1,8 @@
-﻿<UserControl x:Class="VGA.Menu.Views.MenuView"
+﻿<ui:BaseView x:Class="VGA.Menu.Views.MenuView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:viewModels="clr-namespace:VGA.Menu.ViewModels"
+             x:TypeArguments="viewModels:MenuViewModel"
+             xmlns:ui="clr-namespace:Common.UI;assembly=Common.UI"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,4 +16,4 @@
                 Height="25"
                 Command="{Binding BackCommand}"/>
     </Grid>
-</UserControl>
+</ui:BaseView>

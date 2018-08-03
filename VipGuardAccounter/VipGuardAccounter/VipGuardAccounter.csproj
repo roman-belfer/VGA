@@ -91,6 +91,10 @@
       <Project>{5BAC05BD-2FD1-481C-A5F4-AF5FAB8AEBB0}</Project>
       <Name>Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.MVVM\Common.MVVM.csproj">
+      <Project>{c2c54b2a-7b05-4021-b0d3-4a652c56a6cd}</Project>
+      <Name>Common.MVVM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.Navigation\Common.Navigation.csproj">
       <Project>{7d2195b1-cacf-4ab4-9e54-9737cdc407c2}</Project>
       <Name>Common.Navigation</Name>
@@ -98,6 +102,10 @@
     <ProjectReference Include="..\Common.Repository\Common.Repository.csproj">
       <Project>{8C028812-6BE3-4188-B355-FAF8ECC929C2}</Project>
       <Name>Common.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{c5a9fe9e-60cc-4d12-88b6-cadabc1ff7df}</Project>
+      <Name>Common.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\VGA.Detail\VGA.Detail.csproj">
       <Project>{A9B3762E-7371-4662-8A34-C8E0A4D9B607}</Project>

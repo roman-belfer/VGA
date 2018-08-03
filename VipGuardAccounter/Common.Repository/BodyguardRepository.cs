@@ -2,6 +2,7 @@
 using Common.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Common.Repository
 {
@@ -36,14 +37,14 @@ namespace Common.Repository
             };
         }
 
-        public BodyguardDetailDto GetBodyguardDetails(uint ID)
+        public Task<BodyguardDetailDto> GetBodyguardDetails(uint ID)
         {
-            return _bodyguardCollection.FirstOrDefault(x => x.BaseInfo.ID == ID);
+            return Task.Run(() => _bodyguardCollection.FirstOrDefault(x => x.BaseInfo.ID == ID));
         }
 
-        public IEnumerable<BodyguardDto> GetBodyguardsCollection(SearchParameters searchParams)
+        public Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchParameters searchParams)
         {
-            return _bodyguardCollection.Select(x => x.BaseInfo);
+            return Task.Run(() => _bodyguardCollection.Select(x => x.BaseInfo));
         }
     }
 }

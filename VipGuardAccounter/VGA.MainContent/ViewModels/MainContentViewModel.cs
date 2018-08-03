@@ -3,6 +3,7 @@ using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Views;
 using Common.MVVM;
+using Prism.Commands;
 using Prism.Events;
 
 namespace VGA.MainContent.ViewModels
@@ -11,7 +12,9 @@ namespace VGA.MainContent.ViewModels
     {
         private readonly INavigator _navigator;
         private readonly IEventAggregator _eventAggregator;
-
+        
+        private bool _isViewChanged;
+        private bool _isHomeVisible;
         private bool _isMenuVisible;
         private object _menuView;
         private IView _currentView;
@@ -22,6 +25,34 @@ namespace VGA.MainContent.ViewModels
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
             Init();
+        }
+
+        #region Properties
+
+        public bool IsViewChanged
+        {
+            get { return _isViewChanged; }
+            set
+            {
+                if (_isViewChanged != value)
+                {
+                    _isViewChanged = value;
+                    OnPropertyChanged(nameof(IsViewChanged));
+                }
+            }
+        }
+
+        public bool IsHomeVisible
+        {
+            get { return _isHomeVisible; }
+            set
+            {
+                if (_isHomeVisible != value)
+                {
+                    _isHomeVisible = value;
+                    OnPropertyChanged(nameof(IsHomeVisible));
+                }
+            }
         }
 
         public bool IsMenuVisible
@@ -63,6 +94,13 @@ namespace VGA.MainContent.ViewModels
             }
         }
 
+        #endregion
+
+        public DelegateCommand HomeCommand
+        {
+            get { return new DelegateCommand(OnHome); }
+        }
+
         private void Init()
         {
             MenuView = _navigator.GetMenuView();
@@ -70,11 +108,32 @@ namespace VGA.MainContent.ViewModels
             _eventAggregator.GetEvent<NavigationEvents.NavigateViewEvent>().Subscribe(OnNavigateView, ThreadOption.UIThread);
         }
 
+        private IView _tempView;
         private void OnNavigateView(IView view)
         {
-            CurrentView = view;
+            _tempView = view;
+            if (CurrentView != null)
+            {
+                CurrentView?.HideView(OnHideCompleted);
+            }
+            else
+            {
+                OnHideCompleted();
+            }
+            
+            //IsMenuVisible = CurrentView.Previous != null;
+            IsHomeVisible = !_navigator.IsFirstViewActive();
+        }
 
-            IsMenuVisible = _navigator.IsFirstViewActive();
+        private void OnHideCompleted()
+        {
+            CurrentView = _tempView;
+            CurrentView.ShowView();
+        }
+
+        private void OnHome()
+        {
+            _navigator.StartMenu();
         }
     }
 }

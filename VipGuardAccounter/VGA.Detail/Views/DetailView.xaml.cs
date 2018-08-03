@@ -1,19 +1,15 @@
 ﻿using Common.Infrastructure.Interfaces.Views;
-using System.Windows.Controls;
+using Common.UI;
+using System;
 using VGA.Detail.ViewModels;
 
 namespace VGA.Detail.Views
 {
-    public partial class DetailView : UserControl, IDetailView
+    public partial class DetailView : BaseView<DetailViewModel>, IDetailView
     {
         public DetailView()
         {
             InitializeComponent();
-
-            DataContext = new DetailViewModel();
         }
-
-        public IView Previous { get; set; }
-        public IView Next { get; set; }
     }
 }

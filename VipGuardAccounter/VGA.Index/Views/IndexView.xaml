@@ -1,29 +1,26 @@
-﻿<UserControl x:Class="VGA.Index.Views.IndexView"
+﻿<ui:BaseView x:Class="VGA.Index.Views.IndexView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="LightGray"
-             Name="indexView">
+             xmlns:viewModels="clr-namespace:VGA.Index.ViewModels"
+             x:TypeArguments="viewModels:IndexViewModel"
+             xmlns:local="clr-namespace:VGA.Index.Views"
+             xmlns:ui="clr-namespace:Common.UI;assembly=Common.UI"
+             xmlns:controls="clr-namespace:Common.UI.Controls;assembly=Common.UI"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding Path=BodyguardCollection, Mode=TwoWay}"
-                  CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Rate}" Header="Рейтинг" MinWidth="50" SortDirection="Descending"
-                                    IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Имя" Width="200" 
-                                    IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="150" 
-                                    IsReadOnly="True"/>
-                <DataGridTemplateColumn IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Детально" Width="100" 
-                                    Command="{Binding Path=DataContext.DetailCommand, ElementName=indexView}"
-                                    CommandParameter="{Binding ID}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="30" />
+        </Grid.ColumnDefinitions>
+        <local:IndexGridView Grid.Column="1"
+                             ItemsSource="{Binding Path=BodyguardCollection, Mode=TwoWay}" 
+                             DetailCommand="{Binding DetailCommand}"
+                             IsDataLoading="{Binding IsDataLoading}"/>
+        <controls:CircularProgressControl Grid.ColumnSpan="2" 
+                                          Color="#9B9DA2" 
+                                          LoadText="Подождите..."
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          IsVisible="{Binding IsDataLoading}" />
     </Grid>
-</UserControl>
+</ui:BaseView>

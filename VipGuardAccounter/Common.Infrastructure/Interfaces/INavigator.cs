@@ -7,6 +7,7 @@
         void Filter();
         void Detail();
         void Edit();
+        void StartMenu();
 
         void Back();
 

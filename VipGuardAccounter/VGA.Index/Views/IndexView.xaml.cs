@@ -1,19 +1,14 @@
 ﻿using Common.Infrastructure.Interfaces.Views;
-using System.Windows.Controls;
+using Common.UI;
 using VGA.Index.ViewModels;
 
 namespace VGA.Index.Views
 {
-    public partial class IndexView : UserControl, IIndexView
+    public partial class IndexView : BaseView<IndexViewModel>, IIndexView
     {
         public IndexView()
         {
-            InitializeComponent();
-
-            DataContext = new IndexViewModel();
+            InitializeComponent();            
         }
-
-        public IView Previous { get; set; }
-        public IView Next { get; set; }
     }
 }

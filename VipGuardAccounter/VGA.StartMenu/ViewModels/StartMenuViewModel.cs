@@ -60,7 +60,7 @@ namespace VGA.StartMenu.ViewModels
 
         private void OnBodyguards()
         {
-            _navigator.Filter();
+            _navigator.Index();
         }
     }
 }

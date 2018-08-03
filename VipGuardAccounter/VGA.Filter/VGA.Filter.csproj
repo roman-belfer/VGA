@@ -70,6 +70,10 @@
       <Project>{C2C54B2A-7B05-4021-B0D3-4A652C56A6CD}</Project>
       <Name>Common.MVVM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{C5A9FE9E-60CC-4D12-88B6-CADABC1FF7DF}</Project>
+      <Name>Common.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

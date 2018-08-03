@@ -98,6 +98,28 @@
       <Project>{C2C54B2A-7B05-4021-B0D3-4A652C56A6CD}</Project>
       <Name>Common.MVVM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{c5a9fe9e-60cc-4d12-88b6-cadabc1ff7df}</Project>
+      <Name>Common.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close%402x.png" />
+    <Resource Include="Resources\close_hover%402x.png" />
+    <Resource Include="Resources\close_on%402x.png" />
+    <Resource Include="Resources\maximize%402x.png" />
+    <Resource Include="Resources\maximize_hover%402x.png" />
+    <Resource Include="Resources\maximize_on%402x.png" />
+    <Resource Include="Resources\mininize%402x.png" />
+    <Resource Include="Resources\mininize_hover%402x.png" />
+    <Resource Include="Resources\mininize_on%402x.png" />
+    <Resource Include="Resources\min_size%402x.png" />
+    <Resource Include="Resources\min_size_hover%402x.png" />
+    <Resource Include="Resources\min_size_on%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\home.png" />
+    <Resource Include="Resources\home_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

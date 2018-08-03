@@ -67,6 +67,10 @@
       <Project>{c2c54b2a-7b05-4021-b0d3-4a652c56a6cd}</Project>
       <Name>Common.MVVM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{C5A9FE9E-60CC-4D12-88B6-CADABC1FF7DF}</Project>
+      <Name>Common.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\DetailView.xaml">

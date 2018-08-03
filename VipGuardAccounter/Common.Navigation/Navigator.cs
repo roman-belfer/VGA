@@ -34,7 +34,7 @@ namespace Common.Navigation
         {
             _startMenuView = _startMenuView ?? Resolve<IStartMenuView>();
 
-            UpdateView(_startMenuView);
+            _currentView = _startMenuView;
 
             RaiseViewChanged();
         }
@@ -89,7 +89,7 @@ namespace Common.Navigation
 
         public bool IsFirstViewActive()
         {
-            return _currentView?.Previous != null;
+            return _currentView is IStartMenuView;
         }
 
         private void RaiseViewChanged()

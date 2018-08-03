@@ -1,19 +1,14 @@
 ﻿using Common.Infrastructure.Interfaces.Views;
-using System.Windows.Controls;
+using Common.UI;
 using VGA.StartMenu.ViewModels;
 
 namespace VGA.StartMenu.Views
 {
-    public partial class StartMenuView : UserControl, IStartMenuView
+    public partial class StartMenuView : BaseView<StartMenuViewModel>, IStartMenuView
     {
         public StartMenuView()
         {
             InitializeComponent();
-
-            DataContext = new StartMenuViewModel();
         }
-
-        public IView Previous { get; set; }
-        public IView Next { get; set; }
     }
 }

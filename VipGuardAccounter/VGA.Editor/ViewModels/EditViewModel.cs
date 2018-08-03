@@ -4,6 +4,7 @@ using Common.Infrastructure.Interfaces;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
+using System.Threading.Tasks;
 using VGA.Editor.Models;
 
 namespace VGA.Editor.ViewModels
@@ -62,9 +63,14 @@ namespace VGA.Editor.ViewModels
 
         private void OnEdit(uint? id)
         {
+            Task.Run(async () => await EditAsync(id));
+        }
+
+        private async Task EditAsync(uint? id)
+        {
             if (id.HasValue)
             {
-                var detailDto = _repository.GetBodyguardDetails(id.Value);
+                var detailDto = await _repository.GetBodyguardDetails(id.Value);
 
                 Bodyguard = BodyguardModel.ConvertToModel(detailDto);
             }

@@ -2,21 +2,243 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterScreen"
-        Height="600" Width="900">
+        WindowStyle="None"
+        Height="600" Width="900"
+        Name="mainContentView">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
-    </Window.Resources>
 
-    <Grid>
+        <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/home.png" 
+                                   Name="Img" 
+                                   Width="18"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/home_hover.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MinimizeButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/mininize@2x.png" Name="Img" Width="10" Height="9"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/mininize_hover@2x.png"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/mininize_on@2x.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MaximizeButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/maximize@2x.png" Name="Img" Width="10" Height="9"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/maximize_hover@2x.png"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/maximize_on@2x.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RestoreButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/min_size@2x.png" Name="Img" Width="10" Height="9"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/min_size_hover@2x.png"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/min_size_on@2x.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/close@2x.png" Name="Img" Width="10" Height="9" Margin="0,0,2,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/close_hover@2x.png"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Img" 
+                                        Property="Source" 
+                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/close_on@2x.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome
+                        CaptionHeight="25"
+                        CornerRadius="0,0,0,0"
+                        GlassFrameThickness="0"
+                        NonClientFrameEdges="None"
+                        UseAeroCaptionButtons="False"
+                        ResizeBorderThickness="5,2,5,5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Grid>
+                            <Grid Height="25"
+                                  VerticalAlignment="Top"
+                                  Name="WindowHeader"
+                                  Background="#242424">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button VerticalAlignment="Center"
+                                        Grid.Column="1"
+                                        Style="{StaticResource HomeButtonStyle}"
+                                        Command="{Binding ElementName=mainContentView, Path=DataContext.HomeCommand}"
+                                        Visibility="{Binding ElementName=mainContentView, Path=DataContext.IsHomeVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
+                                <Grid Grid.Column="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button VerticalAlignment="Center"
+                                            Click="Minimize_Click"
+                                            Style="{StaticResource MinimizeButtonStyle}"/>
+                                    <Button Grid.Column="1"
+                                            x:Name="buttonMaximize"
+                                            Click="Maximize_Click"
+                                            Style="{StaticResource MaximizeButtonStyle}"/>
+                                    <Button Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            x:Name="buttonRestore"
+                                            Click="Maximize_Click"
+                                            Style="{StaticResource RestoreButtonStyle}"/>
+                                    <Button Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Click="Close_Click"
+                                            Style="{StaticResource CloseButtonStyle}"/>
+                                </Grid>
+                            </Grid>
+                            <Border BorderThickness="0,25,0,0">
+                                <AdornerDecorator>
+                                    <ContentPresenter />
+                                </AdornerDecorator>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="WindowState" Value="Normal">
+                                <Setter TargetName="buttonMaximize" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="buttonRestore" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="WindowState" Value="Maximized">
+                                <Setter TargetName="buttonMaximize" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="buttonRestore" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome ResizeBorderThickness="0"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="WindowState" Value="Minimized">
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome GlassFrameThickness="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
+    <Grid Background="#323232">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding MenuView}"
-                            Visibility="{Binding IsMenuVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
-        <ContentControl Grid.Row="2"
+                        Visibility="{Binding IsMenuVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
+        <ContentControl Grid.Row="1"
                         Content="{Binding CurrentView}" />
     </Grid>
+
 </Window>

@@ -4,6 +4,7 @@ using Common.Infrastructure.Interfaces;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
+using System.Threading.Tasks;
 using VGA.Detail.Models;
 
 namespace VGA.Detail.ViewModels
@@ -52,7 +53,12 @@ namespace VGA.Detail.ViewModels
 
         private void OnDetail(uint id)
         {
-            var detailDto = _repository.GetBodyguardDetails(id);
+            Task.Run(async () => await DetailAsync(id));
+        }
+
+        private async Task DetailAsync(uint id)
+        {
+            var detailDto = await _repository.GetBodyguardDetails(id);
 
             Bodyguard = BodyguardModel.ConvertToModel(detailDto);
         }
