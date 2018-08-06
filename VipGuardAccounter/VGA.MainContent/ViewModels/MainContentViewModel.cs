@@ -3,7 +3,6 @@ using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Views;
 using Common.MVVM;
-using Prism.Commands;
 using Prism.Events;
 
 namespace VGA.MainContent.ViewModels
@@ -14,8 +13,6 @@ namespace VGA.MainContent.ViewModels
         private readonly IEventAggregator _eventAggregator;
         
         private bool _isViewChanged;
-        private bool _isHomeVisible;
-        private bool _isMenuVisible;
         private object _menuView;
         private IView _currentView;
 
@@ -38,32 +35,6 @@ namespace VGA.MainContent.ViewModels
                 {
                     _isViewChanged = value;
                     OnPropertyChanged(nameof(IsViewChanged));
-                }
-            }
-        }
-
-        public bool IsHomeVisible
-        {
-            get { return _isHomeVisible; }
-            set
-            {
-                if (_isHomeVisible != value)
-                {
-                    _isHomeVisible = value;
-                    OnPropertyChanged(nameof(IsHomeVisible));
-                }
-            }
-        }
-
-        public bool IsMenuVisible
-        {
-            get { return _isMenuVisible; }
-            set
-            {
-                if (_isMenuVisible != value)
-                {
-                    _isMenuVisible = value;
-                    OnPropertyChanged(nameof(IsMenuVisible));
                 }
             }
         }
@@ -96,11 +67,6 @@ namespace VGA.MainContent.ViewModels
 
         #endregion
 
-        public DelegateCommand HomeCommand
-        {
-            get { return new DelegateCommand(OnHome); }
-        }
-
         private void Init()
         {
             MenuView = _navigator.GetMenuView();
@@ -120,9 +86,6 @@ namespace VGA.MainContent.ViewModels
             {
                 OnHideCompleted();
             }
-            
-            //IsMenuVisible = CurrentView.Previous != null;
-            IsHomeVisible = !_navigator.IsFirstViewActive();
         }
 
         private void OnHideCompleted()

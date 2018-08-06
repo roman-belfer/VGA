@@ -9,28 +9,6 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
-        <Style x:Key="HomeButtonStyle" TargetType="Button">
-            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-            <Setter Property="Focusable" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Background="Transparent">
-                            <Image Source="pack://application:,,,/VGA.MainContent;component/Resources/home.png" 
-                                   Name="Img" 
-                                   Width="18"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Img" 
-                                        Property="Source" 
-                                        Value="pack://application:,,,/VGA.MainContent;component/Resources/home_hover.png"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style x:Key="MinimizeButtonStyle" TargetType="Button">
             <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
             <Setter Property="Focusable" Value="False"/>
@@ -163,11 +141,9 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Button VerticalAlignment="Center"
-                                        Grid.Column="1"
-                                        Style="{StaticResource HomeButtonStyle}"
-                                        Command="{Binding ElementName=mainContentView, Path=DataContext.HomeCommand}"
-                                        Visibility="{Binding ElementName=mainContentView, Path=DataContext.IsHomeVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
+                                <ContentControl Content="{Binding Path=DataContext.MenuView, ElementName=mainContentView}"
+                                                Grid.Column="1"
+                                                VerticalAlignment="Center"/>
                                 <Grid Grid.Column="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -231,14 +207,7 @@
     </Window.Style>
 
     <Grid Background="#323232">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <ContentControl Content="{Binding MenuView}"
-                        Visibility="{Binding IsMenuVisible, Converter={StaticResource boolToVisibilityConverter}}"/>
-        <ContentControl Grid.Row="1"
-                        Content="{Binding CurrentView}" />
+        <ContentControl Content="{Binding CurrentView}" />
     </Grid>
 
 </Window>

@@ -117,9 +117,5 @@
     <Resource Include="Resources\min_size_hover%402x.png" />
     <Resource Include="Resources\min_size_on%402x.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\home.png" />
-    <Resource Include="Resources\home_hover.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
