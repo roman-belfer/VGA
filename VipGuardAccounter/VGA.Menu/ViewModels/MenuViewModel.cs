@@ -1,4 +1,5 @@
-﻿using Common.Infrastructure;
+﻿using System;
+using Common.Infrastructure;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Views;
@@ -13,6 +14,7 @@ namespace VGA.Menu.ViewModels
         private readonly INavigator _navigator;
         private readonly IEventAggregator _eventAggregator;
 
+        private bool _isSearchEnabled;
         private bool _isHomeEnabled;
 
         public MenuViewModel()
@@ -36,6 +38,19 @@ namespace VGA.Menu.ViewModels
             }
         }
 
+        public bool IsSearchEnabled
+        {
+            get { return _isSearchEnabled; }
+            set
+            {
+                if (_isSearchEnabled != value)
+                {
+                    _isSearchEnabled = value;
+                    OnPropertyChanged(nameof(IsSearchEnabled));
+                }
+            }
+        }
+
         public DelegateCommand BackCommand
         {
             get { return new DelegateCommand(OnBack); }
@@ -44,6 +59,11 @@ namespace VGA.Menu.ViewModels
         public DelegateCommand HomeCommand
         {
             get { return new DelegateCommand(OnHome); }
+        }
+        
+        public DelegateCommand SearchCommand
+        {
+            get { return new DelegateCommand(OnSearch); }
         }
 
         private void Init()
@@ -54,6 +74,7 @@ namespace VGA.Menu.ViewModels
         private void OnNavigateView(IView view)
         {
             IsHomeEnabled = !_navigator.IsFirstViewActive();
+            IsSearchEnabled = _navigator.IsSearchAvailable();
         }
 
         private void OnHome()
@@ -64,6 +85,11 @@ namespace VGA.Menu.ViewModels
         private void OnBack()
         {
             _navigator.Back();
+        }
+
+        private void OnSearch()
+        {
+            _navigator.Filter();
         }
     }
 }

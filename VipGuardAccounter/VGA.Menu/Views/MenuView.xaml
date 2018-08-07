@@ -1,22 +1,25 @@
-﻿<ui:BaseView x:Class="VGA.Menu.Views.MenuView"
+﻿<UserControl x:Class="VGA.Menu.Views.MenuView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:viewModels="clr-namespace:VGA.Menu.ViewModels"
              xmlns:controls="clr-namespace:VGA.Menu.Controls"
-             x:TypeArguments="viewModels:MenuViewModel"
-             xmlns:ui="clr-namespace:Common.UI;assembly=Common.UI"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <controls:HomeButton VerticalAlignment="Center"
+        <controls:HomeButton Grid.Column="1" 
+                             IsEnabled="{Binding IsHomeEnabled}"
                              Command="{Binding HomeCommand}"/>
-
-        <controls:BackButton VerticalAlignment="Center"
-                             Grid.Column="2" 
-                             IsEnabled="{Binding IsBackEnabled, UpdateSourceTrigger=PropertyChanged}"
+        <controls:BackButton Grid.Column="3" 
+                             IsEnabled="{Binding IsHomeEnabled}"
                              Command="{Binding BackCommand}"/>
+        <controls:SearchButton Grid.Column="5" 
+                             IsEnabled="{Binding IsSearchEnabled}"
+                             Command="{Binding SearchCommand}"/>
     </Grid>
-</ui:BaseView>
+</UserControl>

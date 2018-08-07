@@ -92,6 +92,11 @@ namespace Common.Navigation
             return _currentView is IStartMenuView;
         }
 
+        public bool IsSearchAvailable()
+        {
+            return _currentView is IIndexView;
+        }
+
         private void RaiseViewChanged()
         {
             _eventAggregator.GetEvent<NavigationEvents.NavigateViewEvent>().Publish(_currentView);

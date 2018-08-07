@@ -1,4 +1,6 @@
-﻿namespace Common.Infrastructure.Interfaces
+﻿using Common.Infrastructure.Interfaces.Views;
+
+namespace Common.Infrastructure.Interfaces
 {
     public interface INavigator
     {
@@ -13,5 +15,6 @@
 
         object GetMenuView();
         bool IsFirstViewActive();
+        bool IsSearchAvailable();
     }
 }

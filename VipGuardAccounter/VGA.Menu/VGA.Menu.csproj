@@ -53,6 +53,9 @@
     <Compile Include="Controls\BackButton.xaml.cs">
       <DependentUpon>BackButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchButton.xaml.cs">
+      <DependentUpon>SearchButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HomeButton.xaml.cs">
       <DependentUpon>HomeButton.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,10 @@
     <Page Include="Controls\BackButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\HomeButton.xaml">
       <SubType>Designer</SubType>
@@ -99,6 +106,10 @@
   <ItemGroup>
     <Resource Include="Resources\back.png" />
     <Resource Include="Resources\back_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\search_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

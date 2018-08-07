@@ -120,8 +120,7 @@
                 <Setter.Value>
                     <WindowChrome
                         CaptionHeight="25"
-                        CornerRadius="0,0,0,0"
-                        GlassFrameThickness="0"
+                        GlassFrameThickness="1"
                         NonClientFrameEdges="None"
                         UseAeroCaptionButtons="False"
                         ResizeBorderThickness="5,2,5,5"/>
@@ -131,19 +130,16 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <Grid>
-                            <Grid Height="25"
+                            <Grid Height="30"
                                   VerticalAlignment="Top"
                                   Name="WindowHeader"
                                   Background="#242424">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10" />
-                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <ContentControl Content="{Binding Path=DataContext.MenuView, ElementName=mainContentView}"
-                                                Grid.Column="1"
-                                                VerticalAlignment="Center"/>
                                 <Grid Grid.Column="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -168,7 +164,7 @@
                                             Style="{StaticResource CloseButtonStyle}"/>
                                 </Grid>
                             </Grid>
-                            <Border BorderThickness="0,25,0,0">
+                            <Border BorderThickness="0 25 0 0">
                                 <AdornerDecorator>
                                     <ContentPresenter />
                                 </AdornerDecorator>
@@ -187,27 +183,23 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="WindowState" Value="Maximized">
-                    <Setter Property="WindowChrome.WindowChrome">
-                        <Setter.Value>
-                            <WindowChrome ResizeBorderThickness="0"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-                <Trigger Property="WindowState" Value="Minimized">
-                    <Setter Property="WindowChrome.WindowChrome">
-                        <Setter.Value>
-                            <WindowChrome GlassFrameThickness="1"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </Window.Style>
 
     <Grid Background="#323232">
-        <ContentControl Content="{Binding CurrentView}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="1" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding MenuView}"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"/>
+        <Border Grid.Row="3" Background="#242424"/>
+        <ContentControl Content="{Binding CurrentView}"
+                        Grid.Row="4"/>
     </Grid>
 
 </Window>

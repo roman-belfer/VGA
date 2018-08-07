@@ -13,7 +13,7 @@ namespace VGA.MainContent.ViewModels
         private readonly IEventAggregator _eventAggregator;
         
         private bool _isViewChanged;
-        private object _menuView;
+        private IView _tempView;
         private IView _currentView;
 
         public MainContentViewModel()
@@ -21,10 +21,14 @@ namespace VGA.MainContent.ViewModels
             _navigator = Container.Resolve<INavigator>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
+            MenuView = _navigator.GetMenuView();
+
             Init();
         }
 
         #region Properties
+
+        public object MenuView { get; }
 
         public bool IsViewChanged
         {
@@ -35,19 +39,6 @@ namespace VGA.MainContent.ViewModels
                 {
                     _isViewChanged = value;
                     OnPropertyChanged(nameof(IsViewChanged));
-                }
-            }
-        }
-
-        public object MenuView
-        {
-            get { return _menuView; }
-            set
-            {
-                if (_menuView != value)
-                {
-                    _menuView = value;
-                    OnPropertyChanged(nameof(MenuView));
                 }
             }
         }
@@ -69,15 +60,13 @@ namespace VGA.MainContent.ViewModels
 
         private void Init()
         {
-            MenuView = _navigator.GetMenuView();
-
             _eventAggregator.GetEvent<NavigationEvents.NavigateViewEvent>().Subscribe(OnNavigateView, ThreadOption.UIThread);
         }
 
-        private IView _tempView;
         private void OnNavigateView(IView view)
         {
             _tempView = view;
+
             if (CurrentView != null)
             {
                 CurrentView?.HideView(OnHideCompleted);
