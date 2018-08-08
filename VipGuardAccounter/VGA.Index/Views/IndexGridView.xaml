@@ -1,8 +1,55 @@
 ﻿<UserControl x:Class="VGA.Index.Views.IndexGridView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:controls="clr-namespace:Common.UI.Controls;assembly=Common.UI"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Name="indexGridView"
-             Opacity="0">
+             Opacity="0"
+             Name="indexGridView">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="GotFocusColor" Color="Green" />
+        <SolidColorBrush x:Key="LostFocusColor" Color="Transparent" />
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Foreground" Value="#FFB3B3B3"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF262626"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#FF383838"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#FF333333"/>
+                </Trigger>
+
+                <EventTrigger RoutedEvent="DataGrid.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource GotFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="DataGrid.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource LostFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <UserControl.Style>
         <Style TargetType="{x:Type UserControl}">
             <Style.Triggers>
@@ -33,15 +80,30 @@
     <DataGrid AutoGenerateColumns="False"
               Grid.Column="1"
               HorizontalAlignment="Center"
-              VerticalAlignment="Center"
               ItemsSource="{Binding Path=ItemsSource, Mode=TwoWay, ElementName=indexGridView}"
-              CanUserAddRows="False">
+              CanUserAddRows="False"
+              Background="Transparent">
+        <DataGrid.RowHeaderStyle>
+            <Style TargetType="{x:Type DataGridRowHeader}">
+                <Style.Setters>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style.Setters>
+            </Style>
+        </DataGrid.RowHeaderStyle>
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Rate}" Header="Рейтинг" 
-                                    MinWidth="60" SortDirection="Descending"
-                                    IsReadOnly="True"/>
-            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" Width="250" 
-                                    IsReadOnly="True"/>
+            <DataGridTemplateColumn IsReadOnly="True" 
+                                    Header="Рейтинг"      
+                                    SortMemberPath="Rate"
+                                    MinWidth="60" 
+                                    SortDirection="Descending">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                            <controls:RateControl VerticalAlignment="Center" Rate="{Binding Rate}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="250"                                
+                                IsReadOnly="True"/>
             <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="150" 
                                     IsReadOnly="True"/>
             <DataGridTemplateColumn IsReadOnly="True">

@@ -48,6 +48,9 @@
     <Compile Include="Controls\CircularProgressControl.xaml.cs">
       <DependentUpon>CircularProgressControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RateControl.xaml.cs">
+      <DependentUpon>RateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +68,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\star_gold.png" />
+    <Resource Include="Resources\star_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
