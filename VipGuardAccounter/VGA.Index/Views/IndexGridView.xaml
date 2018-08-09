@@ -8,45 +8,45 @@
         <SolidColorBrush x:Key="GotFocusColor" Color="Green" />
         <SolidColorBrush x:Key="LostFocusColor" Color="Transparent" />
 
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Foreground" Value="#323232"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
             <Setter Property="Height" Value="35"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#FF262626"/>
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="BorderBrush" Value="{x:Null}" />
                 </Trigger>
-
-                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="#FF383838"/>
-                </Trigger>
-
-                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="#FF333333"/>
-                </Trigger>
-
-                <EventTrigger RoutedEvent="DataGrid.GotFocus">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource GotFocusColor}" />
-                            </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-
-                <EventTrigger RoutedEvent="DataGrid.LostFocus">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource LostFocusColor}" />
-                            </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
@@ -82,6 +82,8 @@
               HorizontalAlignment="Center"
               ItemsSource="{Binding Path=ItemsSource, Mode=TwoWay, ElementName=indexGridView}"
               CanUserAddRows="False"
+              BorderBrush="Black"
+              BorderThickness="2"
               Background="Transparent">
         <DataGrid.RowHeaderStyle>
             <Style TargetType="{x:Type DataGridRowHeader}">
@@ -92,26 +94,26 @@
         </DataGrid.RowHeaderStyle>
         <DataGrid.Columns>
             <DataGridTemplateColumn IsReadOnly="True" 
-                                    Header="Рейтинг"      
+                                    Header="Рейтинг VipGuard"      
                                     SortMemberPath="Rate"
-                                    MinWidth="60" 
                                     SortDirection="Descending">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                            <controls:RateControl VerticalAlignment="Center" Rate="{Binding Rate}"/>
+                        <controls:RateControl VerticalAlignment="Center" Rate="{Binding Rate}"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="250"                                
-                                IsReadOnly="True"/>
-            <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="150" 
-                                    IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="400"                                
+                                IsReadOnly="True" />
+            <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="170" 
+                                IsReadOnly="True" CanUserSort="False"/>
             <DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Content="Детально" Width="100" 
-                                    Command="{Binding Path=DataContext.DetailCommand, ElementName=indexGridView}"
-                                    CommandParameter="{Binding ID}"/>
+                        <Button Content="Детально" Width="120" 
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding Path=DataContext.DetailCommand, ElementName=indexGridView}"
+                                CommandParameter="{Binding ID}"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>

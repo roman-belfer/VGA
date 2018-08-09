@@ -7,16 +7,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Background="Transparent">
-                            <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
                             <Image Source="pack://application:,,,/VGA.Menu;component/Resources/search.png" 
                                    Name="Img" 
-                                   Width="15"
-                                   Margin="0 0 10 0"/>
-                                <TextBlock Name="text" Text="Поиск сотрудника" Foreground="#e7e7e7"
+                                   Width="15"/>
+                            <TextBlock Name="text" Text="Поиск сотрудника" Foreground="#e7e7e7"
+                                           TextAlignment="Right"
                                            Width="0"/>
-                            </StackPanel>
-                        </Grid>
+                        </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Trigger.EnterActions>
@@ -24,7 +22,7 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="text"
                                                              Storyboard.TargetProperty="Width"
-                                                             To="100"
+                                                             To="110"
                                                              Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>

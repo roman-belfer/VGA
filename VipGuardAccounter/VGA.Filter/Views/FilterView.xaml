@@ -52,8 +52,7 @@
                     <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HeightCollection}"/>
                     <Label
              Foreground="#e7e7e7" Content=" До: " />
-                    <ComboBox
-             Foreground="#e7e7e7" Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HeightCollection}"/>
+                    <ComboBox Width="80" SelectedIndex="0" DisplayMemberPath="Value" ItemsSource="{Binding HeightCollection}"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">
