@@ -5,10 +5,10 @@ using Common.Infrastructure.Interfaces;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using VGA.Index.Models;
 
 namespace VGA.Index.ViewModels
 {
@@ -19,9 +19,7 @@ namespace VGA.Index.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         private bool _isDataLoading;
-        private ObservableCollection<IndexModel> _bodyguardCollection;
-
-        private DelegateCommand<uint?> _detailCommand;
+        private ObservableCollection<ItemViewModel> _bodyguardCollection;
 
         public IndexViewModel()
         {
@@ -47,7 +45,7 @@ namespace VGA.Index.ViewModels
             }
         }
 
-        public ObservableCollection<IndexModel> BodyguardCollection
+        public ObservableCollection<ItemViewModel> BodyguardCollection
         {
             get { return _bodyguardCollection; }
             set
@@ -60,12 +58,38 @@ namespace VGA.Index.ViewModels
             }
         }
 
-        public DelegateCommand<uint?> DetailCommand =>
-            _detailCommand ?? (_detailCommand = new DelegateCommand<uint?>(OnDetail));
+        public DelegateCommand<uint?> DetailCommand
+        {
+            get { return new DelegateCommand<uint?>(OnDetail); }
+        }
+
+        public DelegateCommand<uint?> EditCommand
+        {
+            get { return new DelegateCommand<uint?>(OnEdit); }
+        }
+
+        public DelegateCommand<uint?> DeleteCommand
+        {
+            get { return new DelegateCommand<uint?>(OnDelete); }
+        }
 
         private void InitCollection()
         {
             OnSearch(null);
+        }
+
+        private void OnEdit(uint? id)
+        {
+            BodyguardCollection.FirstOrDefault(x => x.ID == id).IsReadOnly = false;
+        }
+
+        private void OnDelete(uint? id)
+        {
+            var item = BodyguardCollection.FirstOrDefault(x => x.ID == id);
+            if (item != null)
+            {
+                BodyguardCollection.Remove(item);
+            }
         }
 
         private void OnSearch(SearchParameters searchParams)
@@ -78,8 +102,8 @@ namespace VGA.Index.ViewModels
         private async Task SearchAsync(SearchParameters searchParams)
         {
             var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
-            var models = IndexModel.ConvertFromDto(bodyguardsCollection);
-            BodyguardCollection = new ObservableCollection<IndexModel>(models.OrderByDescending(x => x.Rate));
+            var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
+            BodyguardCollection = new ObservableCollection<ItemViewModel>(models.OrderByDescending(x => x.Rate));
 
             await Task.Delay(4000);
 

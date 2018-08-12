@@ -11,7 +11,7 @@
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Foreground" Value="#323232"/>
             <Setter Property="Height" Value="35"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{x:Null}" />
@@ -37,7 +37,7 @@
         <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
             <Setter Property="Height" Value="35"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{x:Null}" />
@@ -81,9 +81,11 @@
               Grid.Column="1"
               HorizontalAlignment="Center"
               ItemsSource="{Binding Path=ItemsSource, Mode=TwoWay, ElementName=indexGridView}"
-              CanUserAddRows="False"
+              CanUserAddRows="True"
               BorderBrush="Black"
               BorderThickness="2"
+              RowHeaderWidth="30"
+              LoadingRow="OnLoadingRow"
               Background="Transparent">
         <DataGrid.RowHeaderStyle>
             <Style TargetType="{x:Type DataGridRowHeader}">
@@ -93,9 +95,9 @@
             </Style>
         </DataGrid.RowHeaderStyle>
         <DataGrid.Columns>
-            <DataGridTemplateColumn IsReadOnly="True" 
-                                    Header="Рейтинг VipGuard"      
+            <DataGridTemplateColumn Header="Рейтинг VipGuard"      
                                     SortMemberPath="Rate"
+                                    IsReadOnly="True"
                                     SortDirection="Descending">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
@@ -103,16 +105,36 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="400"                                
-                                IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="170" 
-                                IsReadOnly="True" CanUserSort="False"/>
-            <DataGridTemplateColumn IsReadOnly="True">
+            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="300"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="140" 
+                                IsReadOnly="{Binding IsReadOnly}" CanUserSort="False"/>
+            <!--<DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Button Content="Детально" Width="120" 
                                 HorizontalContentAlignment="Center"
                                 Command="{Binding Path=DataContext.DetailCommand, ElementName=indexGridView}"
+                                CommandParameter="{Binding ID}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>-->
+            <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Content="Редактировать" Width="120" 
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding Path=DataContext.EditCommand, ElementName=indexGridView}"
+                                CommandParameter="{Binding ID}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Content="Удалить" Width="100" 
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding Path=DataContext.DeleteCommand, ElementName=indexGridView}"
                                 CommandParameter="{Binding ID}"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>

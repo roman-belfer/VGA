@@ -2,19 +2,19 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using VGA.Index.Models;
+using VGA.Index.ViewModels;
 
 namespace VGA.Index.Views
 {
     public partial class IndexGridView : UserControl
     {
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<IndexModel>),
+            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<ItemViewModel>),
                 typeof(IndexGridView), new PropertyMetadata());
 
-        public ObservableCollection<IndexModel> ItemsSource
+        public ObservableCollection<ItemViewModel> ItemsSource
         {
-            get { return (ObservableCollection<IndexModel>)GetValue(ItemsSourceProperty); }
+            get { return (ObservableCollection<ItemViewModel>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -41,6 +41,11 @@ namespace VGA.Index.Views
         public IndexGridView()
         {
             InitializeComponent();
+        }
+
+        private void OnLoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }
