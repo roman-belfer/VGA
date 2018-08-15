@@ -8,14 +8,32 @@
         <SolidColorBrush x:Key="GotFocusColor" Color="Green" />
         <SolidColorBrush x:Key="LostFocusColor" Color="Transparent" />
 
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="SelectionBrush" Value="White"/>
+            <Setter Property="SelectionOpacity" Value="0.2"/>
+        </Style>
+
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Foreground" Value="#323232"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{x:Null}" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Border BorderBrush="White" BorderThickness="0.5" Background="Transparent">
+                            <TextBlock Margin="5 0" Foreground="White" FontSize="11" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Text="{TemplateBinding Content}" ToolTip="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{x:Null}" />
@@ -27,6 +45,16 @@
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border BorderBrush="White" BorderThickness="0.5" Background="Transparent"
+                                Margin="0 -2 0 0">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="{x:Null}" />
@@ -36,8 +64,8 @@
         </Style>
         <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{x:Null}" />
@@ -101,13 +129,33 @@
                                     SortDirection="Descending">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <controls:RateControl VerticalAlignment="Center" Rate="{Binding Rate}"/>
+                        <controls:RateControl VerticalAlignment="Center" Rate="{Binding Rate}" IsHitTestVisible="False"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Binding="{Binding Name}" Header="Полное имя" MinWidth="300"                                
+            <DataGridTextColumn Binding="{Binding Category}" Header="Категория" MinWidth="30"                                
                                 IsReadOnly="{Binding IsReadOnly}" />
-            <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" Width="140" 
+            <DataGridTextColumn Binding="{Binding Name}" Header="Ф.И.О." MinWidth="200"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Year}" Header="Год рождения" MinWidth="50"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding City}" Header="Город жительства" MinWidth="70"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Address}" Header="Адрес жительства" MinWidth="100"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding DriverLicense}" Header="Вод. удостоверение" MinWidth="70"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridCheckBoxColumn Binding="{Binding GunLicense}" Header="Разрешение на оружие" MinWidth="30"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Gun}" Header="Личное оружие" MinWidth="100"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Gun}" Header="Знание английского" MinWidth="70"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Height}" Header="Рост" MinWidth="50"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Weight}" Header="Вес" MinWidth="50"                                
+                                IsReadOnly="{Binding IsReadOnly}" />
+            <DataGridTextColumn Binding="{Binding Phone}" Header="Контакты" Width="80" 
                                 IsReadOnly="{Binding IsReadOnly}" CanUserSort="False"/>
             <!--<DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
@@ -119,7 +167,7 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>-->
-            <DataGridTemplateColumn IsReadOnly="True">
+            <!--<DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Button Content="Редактировать" Width="120" 
@@ -128,7 +176,7 @@
                                 CommandParameter="{Binding ID}"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
+            </DataGridTemplateColumn>-->
             <DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
