@@ -5,6 +5,7 @@ namespace Common.Infrastructure.Events
 {
     public class SearchEvents
     {
-        public class SearchParameterEvent : PubSubEvent<SearchParameters> { }
+        public class SearchBodyguardsEvent : PubSubEvent<SearchBodyguardsParameters> { }
+        public class SearchOrdersEvent : PubSubEvent<SearchOrdersParameters> { }
     }
 }

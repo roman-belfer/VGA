@@ -10,24 +10,24 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VGA.Index.ViewModels
+namespace VGA.Orders.ViewModels
 {
-    public class IndexViewModel : BaseViewModel
+    public class OrdersViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        private readonly IBodyguardRepository _repository;
+        //private readonly IOrdersRepository _repository;
         private readonly IEventAggregator _eventAggregator;
 
         private bool _isDataLoading;
-        private ObservableCollection<ItemViewModel> _bodyguardCollection;
+        private ObservableCollection<ItemViewModel> _ordersCollection;
 
-        public IndexViewModel()
+        public OrdersViewModel()
         {
             _navigator = Container.Resolve<INavigator>();
-            _repository = Container.Resolve<IBodyguardRepository>();
+            //_repository = Container.Resolve<IOrdersRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
-            _eventAggregator.GetEvent<SearchEvents.SearchBodyguardsEvent>().Subscribe(OnSearch, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<SearchEvents.SearchOrdersEvent>().Subscribe(OnSearch, ThreadOption.UIThread);
 
             InitCollection();
         }
@@ -45,15 +45,15 @@ namespace VGA.Index.ViewModels
             }
         }
 
-        public ObservableCollection<ItemViewModel> BodyguardCollection
+        public ObservableCollection<ItemViewModel> OrdersCollection
         {
-            get { return _bodyguardCollection; }
+            get { return _ordersCollection; }
             set
             {
-                if (_bodyguardCollection != value)
+                if (_ordersCollection != value)
                 {
-                    _bodyguardCollection = value;
-                    OnPropertyChanged(nameof(BodyguardCollection));
+                    _ordersCollection = value;
+                    OnPropertyChanged(nameof(OrdersCollection));
                 }
             }
         }
@@ -80,30 +80,30 @@ namespace VGA.Index.ViewModels
 
         private void OnEdit(uint? id)
         {
-            BodyguardCollection.FirstOrDefault(x => x.ID == id).IsReadOnly = false;
+           // OrdersCollection.FirstOrDefault(x => x.ID == id).IsReadOnly = false;
         }
 
         private void OnDelete(uint? id)
         {
-            var item = BodyguardCollection.FirstOrDefault(x => x.ID == id);
+            var item = OrdersCollection.FirstOrDefault(x => x.ID == id);
             if (item != null)
             {
-                BodyguardCollection.Remove(item);
+                OrdersCollection.Remove(item);
             }
         }
 
-        private void OnSearch(SearchBodyguardsParameters searchParams)
+        private void OnSearch(SearchOrdersParameters searchParams)
         {
             IsDataLoading = true;
 
-            Task.Run(async () => await SearchAsync(searchParams));
+           // Task.Run(async () => await SearchAsync(searchParams));
         }
 
-        private async Task SearchAsync(SearchBodyguardsParameters searchParams)
+        private async Task SearchAsync(SearchOrdersParameters searchParams)
         {
-            var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
-            var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
-            BodyguardCollection = new ObservableCollection<ItemViewModel>(models.OrderByDescending(x => x.Rate));
+            //var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
+            //var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
+            //BodyguardCollection = new ObservableCollection<ItemViewModel>(models.OrderByDescending(x => x.Rate));
 
             await Task.Delay(4000);
 
@@ -112,11 +112,11 @@ namespace VGA.Index.ViewModels
 
         private void OnDetail(uint? id)
         {
-            if (id.HasValue)
-            {
-                _navigator.Detail();
-                _eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
-            }
+            //if (id.HasValue)
+            //{
+            //    _navigator.Detail();
+            //    _eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
+            //}
         }
     }
 }

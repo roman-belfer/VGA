@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Infrastructure.DataModels
 {
-    public class SearchParameters
+    public class SearchBodyguardsParameters
     {
     }
 }

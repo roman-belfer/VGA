@@ -157,7 +157,7 @@ namespace VGA.Filter.ViewModels
             _navigator.Index();
 
             //TODO Set parameters for the search
-            _eventAggregator.GetEvent<SearchEvents.SearchParameterEvent>().Publish(new SearchParameters());
+            _eventAggregator.GetEvent<SearchEvents.SearchBodyguardsEvent>().Publish(new SearchBodyguardsParameters());
         }
 
         private void InitCollections()

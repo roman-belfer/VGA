@@ -6,7 +6,7 @@ namespace Common.Infrastructure.Interfaces
 {
     public interface IBodyguardRepository
     {
-        Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchParameters searchParams);
+        Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchBodyguardsParameters searchParams);
         Task<BodyguardDetailDto> GetBodyguardDetails(uint ID);
     }
 }

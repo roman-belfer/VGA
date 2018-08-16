@@ -16,6 +16,8 @@ namespace VGA.Menu.ViewModels
 
         private bool _isSearchEnabled;
         private bool _isHomeEnabled;
+        private bool _isEmployeesEnabled;
+        private bool _isOrdersEnabled;
 
         public MenuViewModel()
         {
@@ -50,6 +52,32 @@ namespace VGA.Menu.ViewModels
                 }
             }
         }
+        
+        public bool IsEmployeesEnabled
+        {
+            get { return _isEmployeesEnabled; }
+            set
+            {
+                if (_isEmployeesEnabled != value)
+                {
+                    _isEmployeesEnabled = value;
+                    OnPropertyChanged(nameof(IsEmployeesEnabled));
+                }
+            }
+        }
+
+        public bool IsOrdersEnabled
+        {
+            get { return _isOrdersEnabled; }
+            set
+            {
+                if (_isOrdersEnabled != value)
+                {
+                    _isOrdersEnabled = value;
+                    OnPropertyChanged(nameof(IsOrdersEnabled));
+                }
+            }
+        }
 
         public DelegateCommand BackCommand
         {
@@ -60,7 +88,17 @@ namespace VGA.Menu.ViewModels
         {
             get { return new DelegateCommand(OnHome); }
         }
-        
+
+        public DelegateCommand EmployeesCommand
+        {
+            get { return new DelegateCommand(OnEmployees); }
+        }
+
+        public DelegateCommand OrdersCommand
+        {
+            get { return new DelegateCommand(OnOrders); }
+        }
+
         public DelegateCommand SearchCommand
         {
             get { return new DelegateCommand(OnSearch); }
@@ -75,6 +113,8 @@ namespace VGA.Menu.ViewModels
         {
             IsHomeEnabled = !_navigator.IsFirstViewActive();
             IsSearchEnabled = _navigator.IsSearchAvailable();
+            IsEmployeesEnabled = !_navigator.IsFirstViewActive() && !_navigator.IsEmployeesActive();
+            IsOrdersEnabled = !_navigator.IsFirstViewActive() && !_navigator.IsOrdersActive();
         }
 
         private void OnHome()
@@ -85,6 +125,16 @@ namespace VGA.Menu.ViewModels
         private void OnBack()
         {
             _navigator.Back();
+        }
+
+        private void OnEmployees()
+        {
+            _navigator.Index();
+        }
+
+        private void OnOrders()
+        {
+            _navigator.Orders();
         }
 
         private void OnSearch()

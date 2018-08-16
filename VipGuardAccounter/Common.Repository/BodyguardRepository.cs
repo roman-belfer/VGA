@@ -42,7 +42,7 @@ namespace Common.Repository
             return Task.Run(() => _bodyguardCollection.FirstOrDefault(x => x.BaseInfo.ID == ID));
         }
 
-        public Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchParameters searchParams)
+        public Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchBodyguardsParameters searchParams)
         {
             return Task.Run(() => _bodyguardCollection.Select(x => x.BaseInfo));
         }

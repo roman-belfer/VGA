@@ -56,7 +56,8 @@
     <Compile Include="Container.cs" />
     <Compile Include="DataModels\BodyguardDetailDto.cs" />
     <Compile Include="DataModels\BodyguardDto.cs" />
-    <Compile Include="DataModels\SearchParameters.cs" />
+    <Compile Include="DataModels\SearchOrdersParameters.cs" />
+    <Compile Include="DataModels\SearchBodyguardsParameters.cs" />
     <Compile Include="DataModels\ValueModel.cs" />
     <Compile Include="Events\DataEvents.cs" />
     <Compile Include="Events\EventContainer.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Interfaces\IMainModule.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\INavigator.cs" />
+    <Compile Include="Interfaces\Views\IOrdersView.cs" />
     <Compile Include="Interfaces\Views\IStartMenuView.cs" />
     <Compile Include="Interfaces\Repositories\IBodyguardRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDictionaryRepository.cs" />

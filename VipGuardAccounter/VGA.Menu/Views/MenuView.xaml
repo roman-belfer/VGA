@@ -8,6 +8,8 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="135"/>
             <ColumnDefinition />
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="20"/>
@@ -18,8 +20,16 @@
         <controls:BackButton Grid.Column="3" 
                              IsEnabled="{Binding IsHomeEnabled}"
                              Command="{Binding BackCommand}"/>
-        <controls:SearchButton Grid.Column="5" 
-                             IsEnabled="{Binding IsSearchEnabled}"
-                             Command="{Binding SearchCommand}"/>
+        <controls:ContentButton Grid.Column="5" 
+                                Content="Список сотрудников"
+                                IsEnabled="{Binding IsEmployeesEnabled}"
+                                Command="{Binding EmployeesCommand}"/>
+        <controls:ContentButton Grid.Column="5" 
+                                Content="Список заказов"
+                                IsEnabled="{Binding IsOrdersEnabled}"
+                                Command="{Binding OrdersCommand}"/>
+        <controls:SearchButton Grid.Column="7" 
+                               IsEnabled="{Binding IsSearchEnabled}"
+                               Command="{Binding SearchCommand}"/>
     </Grid>
 </UserControl>

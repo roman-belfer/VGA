@@ -131,6 +131,10 @@
       <Project>{FF7217F5-25EA-4323-B93B-B584AFF3B325}</Project>
       <Name>VGA.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VGA.Orders\VGA.Orders.csproj">
+      <Project>{8B4968A4-2253-40E3-B6CA-25C0F4C39DD3}</Project>
+      <Name>VGA.Orders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VGA.StartMenu\VGA.StartMenu.csproj">
       <Project>{03BC2178-CE67-4CDF-A9E5-9475A6698B02}</Project>
       <Name>VGA.StartMenu</Name>

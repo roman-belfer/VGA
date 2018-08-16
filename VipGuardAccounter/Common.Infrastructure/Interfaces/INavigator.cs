@@ -6,6 +6,7 @@ namespace Common.Infrastructure.Interfaces
     {
         void Launch();
         void Index();
+        void Orders();
         void Filter();
         void Detail();
         void Edit();
@@ -16,5 +17,7 @@ namespace Common.Infrastructure.Interfaces
         object GetMenuView();
         bool IsFirstViewActive();
         bool IsSearchAvailable();
+        bool IsOrdersActive();
+        bool IsEmployeesActive();
     }
 }

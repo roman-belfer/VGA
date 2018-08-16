@@ -15,6 +15,7 @@ namespace Common.Navigation
         private IView _startMenuView;
         private IView _filterView;
         private IView _indexView;
+        private IView _ordersView;
         private IView _detailView;
         private IView _editView;
 
@@ -44,6 +45,15 @@ namespace Common.Navigation
             _indexView = _indexView ?? Resolve<IIndexView>();
 
             UpdateView(_indexView);
+
+            RaiseViewChanged();
+        }
+
+        public void Orders()
+        {
+            _ordersView = _ordersView ?? Resolve<IOrdersView>();
+
+            UpdateView(_ordersView);
 
             RaiseViewChanged();
         }
@@ -93,6 +103,16 @@ namespace Common.Navigation
         }
 
         public bool IsSearchAvailable()
+        {
+            return _currentView is IIndexView;
+        }
+
+        public bool IsOrdersActive()
+        {
+            return _currentView is IOrdersView;
+        }
+
+        public bool IsEmployeesActive()
         {
             return _currentView is IIndexView;
         }
