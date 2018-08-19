@@ -134,7 +134,7 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTextColumn Binding="{Binding Category}" Header="Категория" MinWidth="30"                                
-                                IsReadOnly="{Binding IsReadOnly}" />
+                                IsReadOnly="{Binding IsReadOnly}"/>
             <DataGridTextColumn Binding="{Binding Name}" Header="Ф.И.О." MinWidth="200"                                
                                 IsReadOnly="{Binding IsReadOnly}" />
             <DataGridTextColumn Binding="{Binding Year}" Header="Год рождения" MinWidth="50"                                

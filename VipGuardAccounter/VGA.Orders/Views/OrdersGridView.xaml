@@ -123,6 +123,11 @@
             </Style>
         </DataGrid.RowHeaderStyle>
         <DataGrid.Columns>
+            <DataGridTextColumn Header="Сотрудник" Binding="{Binding Employee}" Width="200"/>
+            <DataGridTextColumn Header="Стоимость заказа" Binding="{Binding TotalPrice}" Width="100"/>
+            <DataGridTextColumn Header="Предоплата" Binding="{Binding Prepayment}" Width="100"/>
+            <DataGridTextColumn Header="Время начала" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Width="200"/>
+            <DataGridTextColumn Header="Время окончания" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Width="200"/>
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

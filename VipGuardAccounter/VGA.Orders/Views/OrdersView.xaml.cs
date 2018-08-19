@@ -1,5 +1,4 @@
-﻿using System;
-using Common.Infrastructure.Interfaces.Views;
+﻿using Common.Infrastructure.Interfaces.Views;
 using Common.UI;
 using VGA.Orders.ViewModels;
 

@@ -1,0 +1,143 @@
+﻿<Window x:Class="Aurora.Install.Bootstrapper.Views.BootstrapperView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Install"
+        Width="500"
+        Height="250"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+    <Window.Resources>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Image Source="pack://application:,,,/Aurora.Install.Bootstrapper;component/Resources/close@2x.png" Name="Img" Width="10" Height="9" Margin="0,0,2,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Img" Property="Source" Value="pack://application:,,,/Aurora.Install.Bootstrapper;component/Resources/close_hover@2x.png"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Img" Property="Source" Value="pack://application:,,,/Aurora.Install.Bootstrapper;component/Resources/close_on@2x.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Border Name="hover" Background="White" Opacity="0.1" />
+                            <ContentControl HorizontalAlignment="Center" Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="hover" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="hover" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome
+                        CaptionHeight="25"
+                        CornerRadius="5"
+                        GlassFrameThickness="0"
+                        NonClientFrameEdges="None"
+                        UseAeroCaptionButtons="False"
+                        ResizeBorderThickness="5,2,5,5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Aurora.Install.Bootstrapper;component/Resources/back@2x.png" />
+                            </Grid.Background>
+
+                            <Grid Height="25"
+                                  VerticalAlignment="Top"
+                                  Name="WindowHeader"
+                                  Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="1" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="2"
+                                        Click="ExitClick"
+                                        Style="{StaticResource CloseButtonStyle}"/>
+
+                            </Grid>
+                            <Border BorderThickness="0,20,0,0" > 
+                                <AdornerDecorator>
+                                    <ContentPresenter />
+                                </AdornerDecorator>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome ResizeBorderThickness="0"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="WindowState" Value="Minimized">
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome GlassFrameThickness="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
+    <Border>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="154" />               
+            </Grid.RowDefinitions>
+
+            <Grid Grid.RowSpan="2">
+                <Image Source="pack://application:,,,/Aurora.Install.Bootstrapper;component/Resources/logo_text@2x.png" Margin="0,-20,0,20" />
+            </Grid>
+            <Border Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                <ContentControl 
+                            Content="{Binding CurrentViewModel.View}" />
+            </Border>
+
+        </Grid>
+    </Border>
+</Window>

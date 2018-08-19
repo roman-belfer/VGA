@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>{50cc7b3d-14c9-445d-abb1-a8f59af36423}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Aurora_Setup</OutputName>
+    <OutputType>Bundle</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SignOutput>true</SignOutput>
+    <Name>VGA.Installer</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Bundle.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AuroraInnoSetupBundle.iss" />
+    <Content Include="BootstrapperCore.config" />
+    <Content Include="packages\netFx46.exe" />
+    <Content Include="packages\WixBalExtension.dll" />
+    <Content Include="packages\WixNetFxExtension.dll" />
+    <Content Include="packages\WixUtilExtension.dll" />
+    <Content Include="vipsky_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="packages" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>packages\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>packages\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixBalExtension">
+      <HintPath>packages\WixBalExtension.dll</HintPath>
+      <Name>WixBalExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VGA.Install.Bootstrapper\VGA.Install.Bootstrapper.csproj">
+      <Name>VGA.Install.Bootstrapper</Name>
+      <Project>{54ba1fe8-1ef6-4e9b-b806-07b98a30cd4e}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\VGA.Install.Client\VGA.Install.Client.wixproj">
+      <Name>VGA.Install.Client</Name>
+      <Project>{ee11b037-2d65-4e53-8c9d-76120f1d6839}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\VipGuardAccounter\Vipsky.csproj">
+      <Name>Vipsky</Name>
+      <Project>{13b994c7-960d-423f-8302-2eba7983ff11}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <Target Name="BeforeBuild">
+    <GetAssemblyIdentity AssemblyFiles="..\x64\$(Configuration)\Aurora HDR 2018.exe">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <DefineConstants>BuildVersion=%(AssemblyVersion.Version)</DefineConstants>
+    </PropertyGroup>
+  </Target>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	
+  <Target Name="UsesFrameworkSdk">
+    <GetFrameworkSdkPath>
+      <Output TaskParameter="Path" PropertyName="FrameworkSdkPath" />
+    </GetFrameworkSdkPath>
+    <PropertyGroup>
+      <Win8SDK>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.1@InstallationFolder)</Win8SDK>
+    </PropertyGroup>
+  </Target>
+  <Target Name="UsesSignTool" DependsOnTargets="UsesFrameworkSdk">
+    <PropertyGroup>
+      <SignToolPath>c:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe</SignToolPath>
+    </PropertyGroup>
+  </Target>
+  <Target Name="SignBundleEngine" DependsOnTargets="UsesSignTool">
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /d &quot;Aurora_Setup.exe&quot; /t http://timestamp.digicert.com /a &quot;@(SignBundleEngine)&quot;" />
+  </Target>
+  <Target Name="SignBundle" DependsOnTargets="UsesSignTool">
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /d &quot;Aurora_Setup.exe&quot; /t http://timestamp.digicert.com /a &quot;@(SignBundle)&quot;" />
+  </Target>-->
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" sign /f "$(SolutionDir)\signing\MacphunSoftware.p12" /t http://timestamp.verisign.com/scripts/timstamp.dll /d "Aurora" "$(SolutionDir)\Aurora.Install.Client\bin\Release\Aurora.Install.Client.msi"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\WiX Toolset v3.11\bin\insignia.exe" -ib "$(TargetDir)Aurora_Setup.exe" -o "$(TargetDir)engine.exe"
+"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" sign /f "$(SolutionDir)signing\MacphunSoftware.p12" /t http://timestamp.verisign.com/scripts/timstamp.dll "$(TargetDir)engine.exe"
+"C:\Program Files (x86)\WiX Toolset v3.11\bin\insignia.exe" -ab "$(TargetDir)engine.exe" "$(TargetDir)Aurora_Setup.exe" -o "$(TargetDir)Aurora_Setup.exe"
+"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" sign /f "$(SolutionDir)signing\MacphunSoftware.p12" /t http://timestamp.verisign.com/scripts/timstamp.dll "$(TargetDir)Aurora_Setup.exe"
+"C:\Program Files (x86)\Inno Setup 5\ISCC.exe" "$(ProjectDir)\AuroraInnoSetupBundle.iss"
+"C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" sign /f "$(SolutionDir)signing\MacphunSoftware.p12" /t http://timestamp.verisign.com/scripts/timstamp.dll "$(TargetDir)AuroraSetupSimpleBundle.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <!--<Import Project="$(SolutionDir)signing" />-->
+  <!--<Target Name="SignBundleEngine" DependsOnTargets="CreateProperties" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /f &quot;$(AuthenticodeCertFile)&quot; /p &quot;$(AuthenticodePassword)&quot; /t $(AuthenticodeTimestamp) /v &quot;@(SignBundleEngine)&quot;" Condition="'$(PropsInOneLine)' != ''" />
+  </Target>
+  <Target Name="SignBundle" DependsOnTargets="CreateProperties" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /f &quot;$(AuthenticodeCertFile)&quot; /p &quot;$(AuthenticodePassword)&quot; /t $(AuthenticodeTimestamp) /v &quot;@(SignBundle)&quot;" Condition="'$(PropsInOneLine)' != ''" />
+  </Target>-->
+</Project>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+		 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+		 xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <?define AppName = Aurora ?>
+  <?define ManufacturerName = Macphun ?>
+
+
+  <Bundle Name="$(var.AppName)" Version="$(var.BuildVersion)"
+					IconSourceFile="aurora_icon.ico" Manufacturer="$(var.ManufacturerName)" UpgradeCode="{7F6BC7C2-2B50-448A-9F34-B1EE2276EB5C}"> 
+    
+    <BootstrapperApplicationRef Id ="ManagedBootstrapperApplicationHost">      
+      <PayloadGroupRef Id ="InstallerPayload" />
+    </BootstrapperApplicationRef>
+
+    <WixVariable Id="WixMbaPrereqPackageId" Value="Netfx4Full" />
+    <WixVariable Id="WixMbaPrereqLicenseUrl" Value="NetfxLicense.rtf" />    
+
+    <Variable Name="BurnVariable" Type="string" bal:Overridable="yes" Value="[ProgramFilesFolder]$(var.ManufacturerName)" />
+    <Variable Name="ApplicationName" Value="$(var.AppName)"/>
+
+   <Chain>
+       <PackageGroupRef Id="NetFx452Installer"/>  
+       <MsiPackage Id="AuroraClient" SourceFile="$(var.Aurora.Install.Client.TargetPath)" Permanent="no" Vital="yes" Compressed="yes" Visible="no">
+        <MsiProperty Name="MANUFACTURERFOLDER" Value="[BurnVariable]"/>
+      </MsiPackage>    
+           <PackageGroupRef Id="vcredist"/>
+          <PackageGroupRef Id="vcredist120"/>
+    </Chain>
+  </Bundle>
+
+  <Fragment>
+    <PayloadGroup Id="InstallerPayload">
+      <Payload SourceFile="$(var.Aurora.Install.Bootstrapper.TargetPath)"/>
+      <Payload SourceFile="$(var.Aurora.TargetPath)"/>
+      <Payload SourceFile="BootstrapperCore.config" />
+      <Payload SourceFile="$(var.Aurora.Install.Bootstrapper.TargetDir)Microsoft.Deployment.WindowsInstaller.dll" />
+    </PayloadGroup>
+  </Fragment>  
+    
+    <Fragment>   
+    <util:ProductSearch Id="VCREDIST_120_x64" UpgradeCode="B0B194F8-E0CE-33FE-AA11-636428A4B73D"
+        Result="version"
+        Variable="VCREDIST_120_x64" />
+
+    <util:ProductSearch Id="VCREDIST_x64" UpgradeCode="9413713B-53F9-457F-A4DE-2B8E7ED63AF5"
+        Result="version"
+        Variable="VCREDIST_x64" />
+   
+    <PackageGroup Id="vcredist120">
+      <ExePackage Id="vc120" Cache="yes" PerMachine="yes" Permanent="yes" Vital="yes" Compressed="yes"
+                SourceFile="packages/vc_redist_120_x64.exe"
+                Name="packages\vc_redist_120_x64.exe"
+          InstallCommand="/quiet /norestart"
+          DetectCondition="(VCREDIST_120_x64 &gt;= v12.0.21005)" >
+     
+        <ExitCode Value="3010" Behavior="forceReboot"/>
+
+        <ExitCode Value="1638" Behavior="success"/>
+      </ExePackage>
+    </PackageGroup>
+
+    <PackageGroup Id="vcredist">
+      <ExePackage Id="vc" Cache="yes" PerMachine="yes" Permanent="yes" Vital="yes" Compressed="yes"
+                SourceFile="packages/vc_redist_x64.exe"
+                Name="packages\vc_redist_x64.exe"
+          InstallCommand="/quiet /norestart"
+          DetectCondition="(VCREDIST_x64 &gt;= v14.0.24215.1)" >
+        
+        <ExitCode Value="3010" Behavior="forceReboot"/>    
+
+        <ExitCode Value="1638" Behavior="success"/>
+      </ExePackage>
+    </PackageGroup>
+  </Fragment>
+
+<Fragment>    
+    <util:RegistrySearch Root="HKLM" 
+    Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\SKUs\.NETFramework,Version=v4.6.1"
+    Result="exists" 
+    Variable="Netfx461" />
+    
+    <util:RegistrySearch Root="HKLM"  
+    Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\SKUs\.NETFramework,Version=v4.6.1" 
+    Result="exists"
+    Variable="Netfx461x64"
+    Win64="yes" />
+ 
+    <PackageGroup Id="NetFx452Installer">
+      <ExePackage
+          Id="Netfx4Full"
+          Cache="yes"
+          Compressed="yes"
+          PerMachine="yes"
+          Permanent="yes"
+          Vital="yes"
+          InstallCommand="/norestart /q"
+          SourceFile="packages/netFx46.exe"
+          DetectCondition="Netfx461 AND (NOT VersionNT64 OR Netfx461x64)">
+      </ExePackage>               
+    </PackageGroup>
+  </Fragment>
+</Wix>

@@ -2,10 +2,10 @@
 using Common.Infrastructure.DataModels;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
+using Common.Infrastructure.Interfaces.Repositories;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +15,8 @@ namespace VGA.Orders.ViewModels
     public class OrdersViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        //private readonly IOrdersRepository _repository;
+        private readonly IOrdersRepository _repository;
+        private readonly IBodyguardRepository _bodyguardsRepository;
         private readonly IEventAggregator _eventAggregator;
 
         private bool _isDataLoading;
@@ -24,7 +25,8 @@ namespace VGA.Orders.ViewModels
         public OrdersViewModel()
         {
             _navigator = Container.Resolve<INavigator>();
-            //_repository = Container.Resolve<IOrdersRepository>();
+            _repository = Container.Resolve<IOrdersRepository>();
+            _bodyguardsRepository = Container.Resolve<IBodyguardRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
             _eventAggregator.GetEvent<SearchEvents.SearchOrdersEvent>().Subscribe(OnSearch, ThreadOption.UIThread);
@@ -96,14 +98,15 @@ namespace VGA.Orders.ViewModels
         {
             IsDataLoading = true;
 
-           // Task.Run(async () => await SearchAsync(searchParams));
+            Task.Run(async () => await SearchAsync(searchParams));
         }
 
         private async Task SearchAsync(SearchOrdersParameters searchParams)
         {
-            //var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
-            //var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
-            //BodyguardCollection = new ObservableCollection<ItemViewModel>(models.OrderByDescending(x => x.Rate));
+            var ordersCollection = await _repository.GetOrdersCollection(searchParams);
+            var bodyguards = await _bodyguardsRepository.GetBodyguardsCollection(null);
+            var models = ItemViewModel.ConvertFromDto(ordersCollection, bodyguards.ToDictionary(o => o.ID, o => o.FullName));
+            OrdersCollection = new ObservableCollection<ItemViewModel>(models);
 
             await Task.Delay(4000);
 

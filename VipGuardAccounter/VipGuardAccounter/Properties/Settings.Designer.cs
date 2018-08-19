@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VipGuardAccounter.Properties {
+namespace VipSky.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

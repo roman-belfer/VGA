@@ -6,6 +6,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SurName { get; set; }
+        public string FullName { get; set; }
         public uint Rate { get; set; }
         public string Phone { get; set; }
 
@@ -15,6 +16,7 @@
             FirstName = firstName;
             SurName = surName;
             LastName = lastName;
+            FullName = $"{LastName} {FirstName} {SurName}";
             Rate = rate;
             Phone = phone;
         }

@@ -73,6 +73,7 @@ namespace VGA.Index.ViewModels
                 }
             }
         }
+
         public static ItemViewModel ConvertFromDto(BodyguardDto dto)
         {
             var model = new ItemViewModel();

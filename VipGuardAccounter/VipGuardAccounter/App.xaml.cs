@@ -14,7 +14,7 @@ using VGA.Menu.Views;
 using VGA.Orders.Views;
 using VGA.StartMenu.Views;
 
-namespace VipGuardAccounter
+namespace Vipsky
 {
     public partial class App : Application
     {
@@ -29,8 +29,11 @@ namespace VipGuardAccounter
         {
             Container.Register<INavigator, Navigator>();
             Container.Register<IMainModule, MainModule>();
+
             Container.Register<IDictionaryRepository, DictionaryRepository>();
             Container.Register<IBodyguardRepository, BodyguardRepository>();
+            Container.Register<IOrdersRepository, OrdersRepository>();
+
             Container.Register<IDetailView, DetailView>();
             Container.Register<IFilterView, FilterView>();
             Container.Register<IIndexView, IndexView>();

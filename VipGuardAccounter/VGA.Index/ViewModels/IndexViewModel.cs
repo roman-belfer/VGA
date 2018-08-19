@@ -103,7 +103,7 @@ namespace VGA.Index.ViewModels
         {
             var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
             var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
-            BodyguardCollection = new ObservableCollection<ItemViewModel>(models.OrderByDescending(x => x.Rate));
+            BodyguardCollection = new ObservableCollection<ItemViewModel>(models);
 
             await Task.Delay(4000);
 
