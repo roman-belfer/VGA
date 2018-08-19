@@ -1,13 +1,13 @@
 ﻿using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
-using Aurora.Install.Bootstrapper.Helpers;
-using Aurora.Install.Bootstrapper.Interfaces;
-using Aurora.Install.Bootstrapper.Models;
+using VGA.Install.Bootstrapper.Helpers;
+using VGA.Install.Bootstrapper.Interfaces;
+using VGA.Install.Bootstrapper.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 
-namespace Aurora.Install.Bootstrapper.ViewModels
+namespace VGA.Install.Bootstrapper.ViewModels
 {
     class ProgressViewModel : ViewModelBase, IInstallViewModel
     {
@@ -100,7 +100,7 @@ namespace Aurora.Install.Bootstrapper.ViewModels
         private ProgressViewModel()
         {
             IsProgressIndeterminate = true;
-            Message = "Initializing...";
+            Message = "Инициализация...";
 
             this._executingPackageOrderIndex = new Dictionary<string, int>();
             BootstrapperModel.Instance.Bootstrapper.ExecuteMsiMessage += this.ExecuteMsiMessage;
@@ -154,7 +154,7 @@ namespace Aurora.Install.Bootstrapper.ViewModels
 
                 result += "\tStack Trace:\n" + exc.StackTrace;
 
-                result += "\n\n\tMessage:\n\t\t";
+                result += "\n\n\tСообщение:\n\t\t";
 
                 result += exc.Message + "\n";
 

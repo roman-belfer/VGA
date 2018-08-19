@@ -1,4 +1,4 @@
-﻿namespace Aurora.Install.Bootstrapper.Interfaces
+﻿namespace VGA.Install.Bootstrapper.Interfaces
 {
     public interface IInstallerView
     {

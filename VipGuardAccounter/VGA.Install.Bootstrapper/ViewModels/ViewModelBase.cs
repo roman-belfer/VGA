@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Aurora.Install.Bootstrapper.ViewModels
+namespace VGA.Install.Bootstrapper.ViewModels
 {
     class ViewModelBase : INotifyPropertyChanged
     {

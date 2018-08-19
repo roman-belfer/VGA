@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 
-namespace Aurora.Install.Bootstrapper.Helpers
+namespace VGA.Install.Bootstrapper.Helpers
 {
     public static class ProcessHelper
     {

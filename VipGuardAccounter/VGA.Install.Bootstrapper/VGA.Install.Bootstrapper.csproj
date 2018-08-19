@@ -7,8 +7,8 @@
     <ProjectGuid>{54BA1FE8-1EF6-4E9B-B806-07B98A30CD4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aurora.Install.Bootstrapper</RootNamespace>
-    <AssemblyName>Aurora.Install.Bootstrapper</AssemblyName>
+    <RootNamespace>VGA.Install.Bootstrapper</RootNamespace>
+    <AssemblyName>VGA.Install.Bootstrapper</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -98,11 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Bootstrapper.cs" />
-    <Compile Include="Common.Localizer\Converters\TranslateConverter.cs" />
-    <Compile Include="Common.Localizer\DataModels\TranslationData.cs" />
-    <Compile Include="Common.Localizer\Helpers\TranslationHelper.cs" />
-    <Compile Include="Common.Localizer\Helpers\TranslatorExtension.cs" />
-    <Compile Include="Common.Localizer\Translator.cs" />
     <Compile Include="Converters\InverceBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\ProcessHelper.cs" />
@@ -146,9 +141,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common.Localizer\Strings\de.strings" />
-    <EmbeddedResource Include="Common.Localizer\Strings\es.strings" />
-    <EmbeddedResource Include="Common.Localizer\Strings\ja.strings" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -178,16 +170,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\aurora_logo%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\back%402x.png" />
-    <Resource Include="Resources\logo_text%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\close%402x.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\vipsky_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

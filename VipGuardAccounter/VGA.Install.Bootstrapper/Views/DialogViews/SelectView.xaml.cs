@@ -1,7 +1,7 @@
-﻿using Aurora.Install.Bootstrapper.Helpers;
-using Aurora.Install.Bootstrapper.Interfaces;
+﻿using VGA.Install.Bootstrapper.Helpers;
+using VGA.Install.Bootstrapper.Interfaces;
 
-namespace Aurora.Install.Bootstrapper.Views.DialogViews
+namespace VGA.Install.Bootstrapper.Views.DialogViews
 {
     /// <summary>
     /// Interaction logic for SelectView.xaml

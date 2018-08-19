@@ -5,16 +5,16 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
 
-[assembly: BootstrapperApplication(typeof(Aurora.Install.Bootstrapper.Bootstrapper))]
+[assembly: BootstrapperApplication(typeof(VGA.Install.Bootstrapper.Bootstrapper))]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aurora.Install.Bootstrapper")]
+[assembly: AssemblyTitle("VGA.Install.Bootstrapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Aurora.Install.Bootstrapper")]
+[assembly: AssemblyProduct("VGA.Install.Bootstrapper")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

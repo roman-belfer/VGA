@@ -1,7 +1,7 @@
-﻿using Aurora.Install.Bootstrapper.Interfaces;
+﻿using VGA.Install.Bootstrapper.Interfaces;
 using System;
 
-namespace Aurora.Install.Bootstrapper.ViewModels
+namespace VGA.Install.Bootstrapper.ViewModels
 {
     class MainViewModel : ViewModelBase
     {

@@ -1,8 +1,8 @@
-﻿using Aurora.Install.Bootstrapper.Interfaces;
-using Aurora.Install.Bootstrapper.Views.DialogViews;
+﻿using VGA.Install.Bootstrapper.Interfaces;
+using VGA.Install.Bootstrapper.Views.DialogViews;
 using System.Collections.Generic;
 
-namespace Aurora.Install.Bootstrapper.Helpers
+namespace VGA.Install.Bootstrapper.Helpers
 {
     internal static class ViewHelper
     {

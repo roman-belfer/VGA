@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aurora.Install.Bootstrapper
+namespace VGA.Install.Bootstrapper
 {
     public abstract class InstallAction
     {

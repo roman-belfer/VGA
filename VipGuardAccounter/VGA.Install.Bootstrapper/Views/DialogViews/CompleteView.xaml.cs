@@ -1,7 +1,7 @@
-﻿using Aurora.Install.Bootstrapper.Interfaces;
+﻿using VGA.Install.Bootstrapper.Interfaces;
 using System;
 
-namespace Aurora.Install.Bootstrapper.Views.DialogViews
+namespace VGA.Install.Bootstrapper.Views.DialogViews
 {
     /// <summary>
     /// Interaction logic for CompleteView.xaml

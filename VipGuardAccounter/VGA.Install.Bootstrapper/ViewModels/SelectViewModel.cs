@@ -1,11 +1,11 @@
-﻿using Aurora.Install.Bootstrapper.Helpers;
-using Aurora.Install.Bootstrapper.Interfaces;
-using Aurora.Install.Bootstrapper.Models;
+﻿using VGA.Install.Bootstrapper.Helpers;
+using VGA.Install.Bootstrapper.Interfaces;
+using VGA.Install.Bootstrapper.Models;
 using System;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace Aurora.Install.Bootstrapper.ViewModels
+namespace VGA.Install.Bootstrapper.ViewModels
 {
     class SelectViewModel : ViewModelBase, IInstallViewModel
     {
@@ -77,9 +77,9 @@ namespace Aurora.Install.Bootstrapper.ViewModels
 
         private void InitializeCommands()
         {
-            InstallCommand = new RelayCommand(InstallCommand_Execute, InstallCommand_CanExecute) { Text = "Install" };
-            UnistallCommand = new RelayCommand(UnistallCommand_Execute, UnistallCommand_CanExecute) { Text = "Unistall" };
-            RepairCommand = new RelayCommand(RepairCommand_Execute, RepairCommand_CanExecute) { Text = "Repair" };
+            InstallCommand = new RelayCommand(InstallCommand_Execute, InstallCommand_CanExecute) { Text = "Установить" };
+            UnistallCommand = new RelayCommand(UnistallCommand_Execute, UnistallCommand_CanExecute) { Text = "Удалить" };
+            RepairCommand = new RelayCommand(RepairCommand_Execute, RepairCommand_CanExecute) { Text = "Изменить" };
             SelectFolderCommand = new RelayCommand(SelectFolderCommand_Execute);
         }
 
@@ -105,7 +105,7 @@ namespace Aurora.Install.Bootstrapper.ViewModels
             }
             else if (_model.IsPreviousVersionInstalled)
             {
-                (InstallCommand as RelayCommand).Text = "Update";
+                (InstallCommand as RelayCommand).Text = "Обновить";
             }
 
             return !IsInstalled;

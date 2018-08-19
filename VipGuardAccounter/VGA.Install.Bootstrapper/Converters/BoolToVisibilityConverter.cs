@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Aurora.Install.Bootstrapper.Converters
+namespace VGA.Install.Bootstrapper.Converters
 {
     public class BoolToVisibilityConverter : IValueConverter
     {

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace Aurora.Install.Bootstrapper.Views
+namespace VGA.Install.Bootstrapper.Views
 {
     /// <summary>
     /// Interaction logic for BootstrapperView.xaml

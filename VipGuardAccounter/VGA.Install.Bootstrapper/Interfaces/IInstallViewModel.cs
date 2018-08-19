@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Aurora.Install.Bootstrapper.Interfaces
+namespace VGA.Install.Bootstrapper.Interfaces
 {
     public interface IInstallViewModel : INotifyPropertyChanged
     {

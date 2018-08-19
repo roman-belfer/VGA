@@ -1,7 +1,6 @@
-﻿<UserControl x:Class="Aurora.Install.Bootstrapper.Views.DialogViews.CompleteView"
+﻿<UserControl x:Class="VGA.Install.Bootstrapper.Views.DialogViews.CompleteView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:Aurora.Install.Bootstrapper.Common.Localizer.Converters"
              Height="70"
              Width="500">
 
@@ -131,9 +130,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
-            <converters:TranslateParameterConverter x:Key="TranslateParameterConverter"/>
-
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -149,7 +145,7 @@
                    FontFamily="Calibri"
                    FontSize="14" 
                    Foreground="White"
-                   Text="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Aurora HDR 2018 uninstalled'}"
+                   Text="Программа успешно удалена"
                    TextWrapping="Wrap" >
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -200,7 +196,7 @@
                    FontFamily="Calibri"
                    FontSize="14" 
                    Foreground="White"
-                   Text="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Installation Canceled'}"
+                   Text="Установка отменена"
                    TextWrapping="Wrap" >
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -221,7 +217,7 @@
                    FontFamily="Calibri"
                    FontSize="14" 
                    Foreground="White"
-                   Text="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Aurora HDR 2018 successfully installed'}"
+                   Text="Установка успешно завершена"
                    TextWrapping="Wrap" >
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
@@ -272,7 +268,7 @@
                       FontFamily="Calibri" 
                       Foreground="#dcdcdc"
                       FontSize="11"
-                      Content="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Run Aurora HDR 2018'}" 
+                      Content="Запустить программу" 
                       IsChecked="{Binding Run}"
                       Visibility="{Binding CanRun, Converter={StaticResource boolToVisibility}}" />
         </StackPanel>
@@ -284,7 +280,7 @@
                     Command="{Binding FinishCommand, Mode=OneWay}"
             Style="{StaticResource buttonStyle}">
             <TextBlock 
-                Text="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Finish'}" 
+                Text="Готово" 
                 Foreground="White" 
                 FontSize="11" 
                 VerticalAlignment="Center" 

@@ -1,8 +1,8 @@
-﻿using Aurora.Install.Bootstrapper.ViewModels;
+﻿using VGA.Install.Bootstrapper.ViewModels;
 using System;
 using System.Windows.Input;
 
-namespace Aurora.Install.Bootstrapper
+namespace VGA.Install.Bootstrapper
 {
     internal class RelayCommand : ViewModelBase, ICommand
     {

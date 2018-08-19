@@ -1,12 +1,11 @@
 ﻿using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
-using Aurora.Install.Bootstrapper.Helpers;
-using Aurora.Install.Bootstrapper.Models;
-using Aurora.Install.Bootstrapper.ViewModels;
-using Aurora.Install.Bootstrapper.Views;
+using VGA.Install.Bootstrapper.Helpers;
+using VGA.Install.Bootstrapper.Models;
+using VGA.Install.Bootstrapper.ViewModels;
+using VGA.Install.Bootstrapper.Views;
 using System;
-using Aurora.Install.Bootstrapper.Common.Localizer;
 
-namespace Aurora.Install.Bootstrapper
+namespace VGA.Install.Bootstrapper
 {
     public class Bootstrapper : BootstrapperApplication
     {
@@ -16,7 +15,7 @@ namespace Aurora.Install.Bootstrapper
 
             BootstrapperModel.Instance.Bootstrapper = this;
 
-            ProcessHelper.KillProcess("Aurora");
+            ProcessHelper.KillProcess("VipSky");
 
             //if (Environment.OSVersion.Version.Major < 10)
             //{

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 
-namespace Aurora.Install.Bootstrapper.Models
+namespace VGA.Install.Bootstrapper.Models
 {
     internal class BootstrapperModel
     {

@@ -1,8 +1,7 @@
-﻿<UserControl x:Class="Aurora.Install.Bootstrapper.Views.DialogViews.SelectView"
+﻿<UserControl x:Class="VGA.Install.Bootstrapper.Views.DialogViews.SelectView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:Aurora.Install.Bootstrapper.Converters"
-             xmlns:convertersLocalizer="clr-namespace:Aurora.Install.Bootstrapper.Common.Localizer.Converters"
+             xmlns:converters="clr-namespace:VGA.Install.Bootstrapper.Converters"
              Width="500"
              Height="70"
              >
@@ -101,7 +100,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>-->
-        
+
         <Style x:Key="btnIfNotInstalled" BasedOn="{StaticResource buttonStyle}" TargetType="Button">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsInstalled}" Value="True">
@@ -109,9 +108,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <convertersLocalizer:TranslateParameterConverter x:Key="TranslateParameterConverter"/>
-        
     </UserControl.Resources>
 
     <Grid Margin="20,0">
@@ -123,7 +119,7 @@
         <Grid Visibility="{Binding Path=IsInstalled, Converter={StaticResource BoolToVisibilityCollapsedConverter}}" Grid.Column="0">
             <TextBlock
                 Margin="0,10,0,0"
-                Text="{Binding Converter={StaticResource TranslateParameterConverter}, ConverterParameter='Install Aurora HDR 2018:'}" 
+                Text="Установить программу VipSky" 
                 FontSize="11" 
                 FontFamily="Calibri" 
                 Foreground="White" />
@@ -193,7 +189,7 @@
         <TextBlock HorizontalAlignment="Center" 
                    Margin="0 5" 
                    VerticalAlignment="Center" 
-                   Text="Current or newer version of Aurora is already installed!" 
+                   Text="Текущая или устаревшая версия программы уже установлена!" 
                    Foreground="White" 
                    TextWrapping="Wrap"
                    Visibility="{Binding Path=IsNewerVersionInstalled, Converter={StaticResource BoolToVisibilityConverter}}" />
@@ -228,7 +224,7 @@
                                VerticalAlignment="Center" 
                                Foreground="White" 
                                FontFamily="Calibri"
-                               Text="Repair" 
+                               Text="Изменить" 
                                FontSize="11" />               
             </Button>
 
@@ -243,7 +239,7 @@
                                Foreground="White" 
                                FontFamily="Calibri" 
                                FontSize="11"
-                               Text="Uninstall" />
+                               Text="Удалить" />
                
 
             </Button>

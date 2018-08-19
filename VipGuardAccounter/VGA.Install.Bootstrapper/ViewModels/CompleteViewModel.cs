@@ -1,11 +1,11 @@
-﻿using Aurora.Install.Bootstrapper.Helpers;
-using Aurora.Install.Bootstrapper.Interfaces;
-using Aurora.Install.Bootstrapper.Models;
+﻿using VGA.Install.Bootstrapper.Helpers;
+using VGA.Install.Bootstrapper.Interfaces;
+using VGA.Install.Bootstrapper.Models;
 using System;
 using System.IO;
 using System.Windows.Input;
 
-namespace Aurora.Install.Bootstrapper.ViewModels
+namespace VGA.Install.Bootstrapper.ViewModels
 {
     class CompleteViewModel : ViewModelBase, IInstallViewModel
     {
@@ -53,7 +53,7 @@ namespace Aurora.Install.Bootstrapper.ViewModels
 
             if (Run)
             {
-                ProcessHelper.RunProcess(clientFolderPath, "Aurora HDR 2018.exe");
+                ProcessHelper.RunProcess(clientFolderPath, "VipSky.exe");
             }
         }
         
