@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="VGA.Index.Views.IndexGridView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:controls="clr-namespace:Common.UI.Controls;assembly=Common.UI"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Opacity="0"
              Name="indexGridView">
@@ -115,6 +116,11 @@
               RowHeaderWidth="30"
               LoadingRow="OnLoadingRow"
               Background="Transparent">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="CellEditEnding">
+                <i:InvokeCommandAction Command="{Binding ItemChangedCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <DataGrid.RowHeaderStyle>
             <Style TargetType="{x:Type DataGridRowHeader}">
                 <Style.Setters>

@@ -262,7 +262,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <CheckBox
+            <!--<CheckBox
                 Margin="-2,2,0,0"
                       VerticalContentAlignment="Center"
                       FontFamily="Calibri" 
@@ -270,7 +270,7 @@
                       FontSize="11"
                       Content="Запустить программу" 
                       IsChecked="{Binding Run}"
-                      Visibility="{Binding CanRun, Converter={StaticResource boolToVisibility}}" />
+                      Visibility="{Binding CanRun, Converter={StaticResource boolToVisibility}}" />-->
         </StackPanel>
         <Button  
             Margin="0,0,20,0"

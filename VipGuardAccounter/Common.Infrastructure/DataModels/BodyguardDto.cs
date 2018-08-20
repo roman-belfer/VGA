@@ -1,5 +1,8 @@
-﻿namespace Common.Infrastructure.DataModels
+﻿using System;
+
+namespace Common.Infrastructure.DataModels
 {
+    [Serializable]
     public class BodyguardDto
     {
         public uint ID { get; set; }
@@ -10,6 +13,7 @@
         public uint Rate { get; set; }
         public string Phone { get; set; }
 
+        public BodyguardDto() { }
         public BodyguardDto(uint id, string firstName, string surName, string lastName, uint rate, string phone)
         {
             ID = id;

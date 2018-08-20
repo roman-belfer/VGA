@@ -58,6 +58,11 @@ namespace VGA.Index.ViewModels
             }
         }
 
+        public DelegateCommand ItemChangedCommand
+        {
+            get { return new DelegateCommand(OnItemChanged); }
+        }
+
         public DelegateCommand<uint?> DetailCommand
         {
             get { return new DelegateCommand<uint?>(OnDetail); }
@@ -117,6 +122,15 @@ namespace VGA.Index.ViewModels
                 _navigator.Detail();
                 _eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
             }
+        }
+
+        private void OnItemChanged()
+        {
+            Task.Run(async () =>
+            {
+                var collection = ItemViewModel.ConvertToDto(BodyguardCollection);
+                await _repository.SaveBodyguardsCollection(collection);
+            });
         }
     }
 }

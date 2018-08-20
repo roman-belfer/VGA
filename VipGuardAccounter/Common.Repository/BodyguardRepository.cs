@@ -46,5 +46,13 @@ namespace Common.Repository
         {
             return Task.Run(() => _bodyguardCollection.Select(x => x.BaseInfo));
         }
+
+        public Task SaveBodyguardsCollection(IEnumerable<BodyguardDto> collection)
+        {
+            return Task.Run(() =>
+            {
+                
+            });
+        }
     }
 }
