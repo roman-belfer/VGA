@@ -12,15 +12,25 @@ namespace VGA.Index.Views
             DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<ItemViewModel>),
                 typeof(IndexGridView), new PropertyMetadata());
 
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register("SelectedItem", typeof(ItemViewModel),
+                typeof(IndexGridView), new PropertyMetadata());
+
+        public static readonly DependencyProperty IsDataLoadingProperty =
+            DependencyProperty.Register("IsDataLoading", typeof(bool),
+                typeof(IndexGridView), new PropertyMetadata());
+
         public ObservableCollection<ItemViewModel> ItemsSource
         {
             get { return (ObservableCollection<ItemViewModel>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
-        public static readonly DependencyProperty IsDataLoadingProperty =
-            DependencyProperty.Register("IsDataLoading", typeof(bool),
-                typeof(IndexGridView), new PropertyMetadata());
+        public ItemViewModel SelectedItem
+        {
+            get { return (ItemViewModel)GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
+        }
 
         public bool IsDataLoading
         {

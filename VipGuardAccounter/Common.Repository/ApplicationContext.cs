@@ -1,10 +1,5 @@
 ﻿using Common.Infrastructure.DataModels;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Repository
 {
@@ -14,6 +9,7 @@ namespace Common.Repository
         public ApplicationContext() : base("DefaultConnection")
         {
         }
-        public DbSet<BodyguardDto> Phones { get; set; }
+        public DbSet<BodyguardDto> Bodyguards { get; set; }
+        public DbSet<OrderDto> Orders { get; set; }
     }
 }

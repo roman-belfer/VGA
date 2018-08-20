@@ -20,6 +20,7 @@
         <local:IndexGridView Grid.Column="1"
                              Grid.Row="1"
                              ItemsSource="{Binding Path=BodyguardCollection, Mode=TwoWay}" 
+                             SelectedItem="{Binding Path=SelectedBodyguard, Mode=TwoWay}"
                              DetailCommand="{Binding DetailCommand}"
                              IsDataLoading="{Binding IsDataLoading}"/>
         <controls:CircularProgressControl Grid.ColumnSpan="2" 

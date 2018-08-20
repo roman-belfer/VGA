@@ -110,6 +110,7 @@
               Grid.Column="1"
               HorizontalAlignment="Center"
               ItemsSource="{Binding Path=ItemsSource, Mode=TwoWay, ElementName=indexGridView}"
+              SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay, ElementName=indexGridView}"
               CanUserAddRows="True"
               BorderBrush="Black"
               BorderThickness="2"

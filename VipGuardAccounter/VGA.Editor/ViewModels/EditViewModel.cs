@@ -72,7 +72,7 @@ namespace VGA.Editor.ViewModels
             {
                 var detailDto = await _repository.GetBodyguardDetails(id.Value);
 
-                Bodyguard = BodyguardModel.ConvertToModel(detailDto);
+               // Bodyguard = BodyguardModel.ConvertToModel(detailDto);
             }
             else
             {

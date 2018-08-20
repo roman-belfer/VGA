@@ -19,6 +19,7 @@ namespace VGA.Index.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         private bool _isDataLoading;
+        private ItemViewModel _selectedBodyguard;
         private ObservableCollection<ItemViewModel> _bodyguardCollection;
 
         public IndexViewModel()
@@ -41,6 +42,19 @@ namespace VGA.Index.ViewModels
                 {
                     _isDataLoading = value;
                     OnPropertyChanged(nameof(IsDataLoading));
+                }
+            }
+        }
+
+        public ItemViewModel SelectedBodyguard
+        {
+            get { return _selectedBodyguard; }
+            set
+            {
+                if (_selectedBodyguard != value)
+                {
+                    _selectedBodyguard = value;
+                    OnPropertyChanged(nameof(SelectedBodyguard));
                 }
             }
         }
@@ -106,7 +120,7 @@ namespace VGA.Index.ViewModels
 
         private async Task SearchAsync(SearchBodyguardsParameters searchParams)
         {
-            var bodyguardsCollection = await _repository.GetBodyguardsCollection(searchParams);
+            var bodyguardsCollection = await _repository.GetCollection(searchParams);
             var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
             BodyguardCollection = new ObservableCollection<ItemViewModel>(models);
 
@@ -128,8 +142,8 @@ namespace VGA.Index.ViewModels
         {
             Task.Run(async () =>
             {
-                var collection = ItemViewModel.ConvertToDto(BodyguardCollection);
-                await _repository.SaveBodyguardsCollection(collection);
+                var item = ItemViewModel.ConvertToDto(SelectedBodyguard);
+                await _repository.Edit(item);
             });
         }
     }
