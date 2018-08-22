@@ -9,7 +9,7 @@
 
 
   <Bundle Name="$(var.AppName)" Version="$(var.BuildVersion)"
-					IconSourceFile="vipsky_icon.ico" Manufacturer="$(var.ManufacturerName)" UpgradeCode="{7F6BC7C2-2B50-448A-9F34-B1EE2276EB5C}"> 
+					IconSourceFile="vipsky_icon.ico" Manufacturer="$(var.ManufacturerName)" UpgradeCode="4DD92495-1E93-4812-9234-700B17AAA93A"> 
     
     <BootstrapperApplicationRef Id ="ManagedBootstrapperApplicationHost">      
       <PayloadGroupRef Id ="InstallerPayload" />
