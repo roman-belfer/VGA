@@ -4,7 +4,7 @@ namespace Common.Infrastructure.Events
 {
     public class DataEvents
     {
-        public class DetailEvent : PubSubEvent<uint> { }
-        public class EditEvent : PubSubEvent<uint?> { }
+        public class DetailEvent : PubSubEvent<int> { }
+        public class EditEvent : PubSubEvent<int?> { }
     }
 }

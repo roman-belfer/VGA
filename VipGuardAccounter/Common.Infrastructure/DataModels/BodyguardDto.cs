@@ -1,20 +1,22 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.Infrastructure.DataModels
 {
-    [Serializable]
+    [Table("Bodyguards")]
     public class BodyguardDto
     {
-        public uint ID { get; set; }
+        [Key]
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SurName { get; set; }
         public string FullName { get; set; }
-        public uint Rate { get; set; }
+        public int Rate { get; set; }
         public string Phone { get; set; }
 
         public BodyguardDto() { }
-        public BodyguardDto(uint id, string firstName, string surName, string lastName, uint rate, string phone)
+        public BodyguardDto(int id, string firstName, string surName, string lastName, int rate, string phone)
         {
             ID = id;
             FirstName = firstName;

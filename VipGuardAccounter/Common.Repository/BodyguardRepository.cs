@@ -15,11 +15,12 @@ namespace Common.Repository
         {
             using (var dbContext = new ApplicationContext())
             {
+                dbContext.Bodyguards.Load();
                 _bodyguardCollection = dbContext.Bodyguards.Local.ToList();
             }
         }
 
-        public Task<BodyguardDto> GetBodyguardDetails(uint ID)
+        public Task<BodyguardDto> GetBodyguardDetails(int ID)
         {
             return Task.Run(() => _bodyguardCollection.FirstOrDefault(x => x.ID == ID));
         }

@@ -10,8 +10,8 @@ namespace VGA.Index.ViewModels
     public class ItemViewModel : BaseViewModel
     {
         private bool _isReadOnly;
-        private uint _id;
-        private uint _rate;
+        private int _id;
+        private int _rate;
         private string _name;
         private string _phone;
 
@@ -27,7 +27,7 @@ namespace VGA.Index.ViewModels
                 }
             }
         }
-        public uint ID
+        public int ID
         {
             get { return _id; }
             set
@@ -39,7 +39,7 @@ namespace VGA.Index.ViewModels
                 }
             }
         }
-        public uint Rate
+        public int Rate
         {
             get { return _rate; }
             set

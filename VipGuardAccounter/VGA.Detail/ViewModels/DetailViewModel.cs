@@ -51,12 +51,12 @@ namespace VGA.Detail.ViewModels
             _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(_bodyguard.ID);
         }
 
-        private void OnDetail(uint id)
+        private void OnDetail(int id)
         {
             Task.Run(async () => await DetailAsync(id));
         }
 
-        private async Task DetailAsync(uint id)
+        private async Task DetailAsync(int id)
         {
             var detailDto = await _repository.GetBodyguardDetails(id);
 

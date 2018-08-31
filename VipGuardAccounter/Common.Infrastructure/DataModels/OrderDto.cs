@@ -1,18 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.Infrastructure.DataModels
 {
-    [Serializable]
+    [Table("Orders")]
     public class OrderDto
     {
-        public uint ID { get; set; }
-        public uint BodyguardID { get; set; }
+        [Key]
+        public int ID { get; set; }
+        public int BodyguardID { get; set; }
         public double TotalPrice { get; set; }
         public double Prepayment { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public OrderDto(uint id, uint bodyguardId, double totalPrice, double prepayment, DateTime startDate, DateTime endDate)
+        public OrderDto(int id, int bodyguardId, double totalPrice, double prepayment, DateTime startDate, DateTime endDate)
         {
             ID = id;
             BodyguardID = bodyguardId;

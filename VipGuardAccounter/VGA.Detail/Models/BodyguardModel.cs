@@ -6,7 +6,7 @@ namespace VGA.Detail.Models
 {
     public class BodyguardModel : ICloneable
     {
-        public uint ID { get; set; }
+        public int ID { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
         public short Age { get; set; }

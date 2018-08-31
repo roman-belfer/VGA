@@ -77,9 +77,9 @@ namespace VGA.Index.ViewModels
             get { return new DelegateCommand(OnItemChanged); }
         }
 
-        public DelegateCommand<uint?> DetailCommand
+        public DelegateCommand<int?> DetailCommand
         {
-            get { return new DelegateCommand<uint?>(OnDetail); }
+            get { return new DelegateCommand<int?>(OnDetail); }
         }
 
         public DelegateCommand<uint?> EditCommand
@@ -129,7 +129,7 @@ namespace VGA.Index.ViewModels
             IsDataLoading = false;
         }
 
-        private void OnDetail(uint? id)
+        private void OnDetail(int? id)
         {
             if (id.HasValue)
             {

@@ -8,14 +8,14 @@ namespace VGA.Orders.ViewModels
 {
     public class ItemViewModel : BaseViewModel
     {
-        private uint _id;
+        private int _id;
         private double _totalPrice;
         private double _prepayment;
         private string _employee;
         private DateTime _startDate;
         private DateTime _endDate;
 
-        public uint ID
+        public int ID
         {
             get { return _id; }
             set
@@ -93,7 +93,7 @@ namespace VGA.Orders.ViewModels
             }
         }
 
-        public static ItemViewModel ConvertFromDto(OrderDto dto, Dictionary<uint, string> employees)
+        public static ItemViewModel ConvertFromDto(OrderDto dto, Dictionary<int, string> employees)
         {
             var model = new ItemViewModel();
 
@@ -111,7 +111,7 @@ namespace VGA.Orders.ViewModels
             return model;
         }
 
-        public static IEnumerable<ItemViewModel> ConvertFromDto(IEnumerable<OrderDto> dtos, Dictionary<uint, string> employees)
+        public static IEnumerable<ItemViewModel> ConvertFromDto(IEnumerable<OrderDto> dtos, Dictionary<int, string> employees)
         {
             var result = new List<ItemViewModel>();
 

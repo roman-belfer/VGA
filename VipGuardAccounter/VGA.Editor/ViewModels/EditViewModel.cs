@@ -61,12 +61,12 @@ namespace VGA.Editor.ViewModels
             _navigator.Back();
         }
 
-        private void OnEdit(uint? id)
+        private void OnEdit(int? id)
         {
             Task.Run(async () => await EditAsync(id));
         }
 
-        private async Task EditAsync(uint? id)
+        private async Task EditAsync(int? id)
         {
             if (id.HasValue)
             {
