@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 
-  <?define AppName = VipSky ?>
-  <?define ManufacturerName = VipSky ?>
+  <?define AppName = VipGuard ?>
+  <?define ManufacturerName = VipGuard ?>
 
   <Product Id="*"
 					 Name="$(var.AppName)"
 					 Language="1033"
-           Version="!(bind.FileVersion.VipskyExe)"
+           Version="!(bind.FileVersion.VipGuardExe)"
            Manufacturer="$(var.ManufacturerName)"
            UpgradeCode="4DD92495-1E93-4812-9234-700B17AAA93A">
 
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-    <WixVariable Id="WixUIInfoIco" Value="vipsky_icon.ico" />
+    <WixVariable Id="WixUIInfoIco" Value="vipguard_icon.ico" />
 
     <Condition Message="A newer version of $(var.AppName) is already installed. Exiting installation.">
       <![CDATA[Installed OR NOT NEWER_VERSION_FOUND]]>
@@ -22,7 +22,7 @@
     <Upgrade Id="4DD92495-1E93-4812-9234-700B17AAA93A">
       <UpgradeVersion Property="OLD_VERSION_FOUND"
                       Minimum="0.0.0.0"
-                      Maximum="!(bind.FileVersion.VipSkyExe)"
+                      Maximum="!(bind.FileVersion.VipGuardExe)"
                       IncludeMinimum="yes"
                       IncludeMaximum="no"
                       OnlyDetect="no"
@@ -31,7 +31,7 @@
                       Language="1033"  />
 
       <UpgradeVersion Property="NEWER_VERSION_FOUND"
-                      Minimum="!(bind.FileVersion.VipSkyExe)"
+                      Minimum="!(bind.FileVersion.VipGuardExe)"
                       IncludeMinimum="no"
                       OnlyDetect="yes"
                       Language="1033"  />
@@ -46,7 +46,7 @@
     <Property Id="WORKINGDIRECTORY" Value="[LocalAppDataFolder]$(var.ManufacturerName)\$(var.AppName)" />
     <Property Id="ProfilesSource" Value="[LocalAppDataFolder]$(var.ManufacturerName)\profiles" />
 
-    <Icon Id="LogoIcon.exe" SourceFile="vipsky_icon.ico"/>
+    <Icon Id="LogoIcon.exe" SourceFile="vipguard_icon.ico"/>
 
     <Property Id="ARPPRODUCTICON" Value="LogoIcon.exe" />
 
@@ -63,11 +63,11 @@
                        Guid='{08CB9C2D-C937-440A-8450-884797F6C72F}'
                        DiskId='1' Permanent='no'>
 
-              <File Id='VipSkyExe'
-                    Name='VipSky.exe'
+              <File Id='VipGuardExe'
+                    Name='VipGuard.exe'
                     Vital='yes'
                     KeyPath='yes'
-                    Source='$(var.VipSky.TargetDir)'>
+                    Source='$(var.VipGuard.TargetDir)'>
 
                 <Shortcut Id="DesktopShortcut"
                           Name="$(var.AppName)"
@@ -78,7 +78,7 @@
                 <Shortcut Id='startmenuAdv'
                           Directory='ApplicationProgramsFolder'
                           Advertise='yes'
-                          Name='VipSky'
+                          Name='VipGuard'
                           WorkingDirectory='INSTALLDIR'
                           Icon='LogoIcon.exe'/>
               </File>
@@ -93,7 +93,7 @@
       </Directory>
 
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="VipSky" />
+        <Directory Id="ApplicationProgramsFolder" Name="VipGuard" />
       </Directory>
 
     </Directory>
@@ -106,71 +106,93 @@
     <ComponentGroup Id="ProductComponents" Directory="INSTALLLOCATION" >
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
         Id="CommonInfrastructuredllComponent" Guid="00E3F054-0CB0-43A0-B466-AB66D196E1EB">
-        <File Id="CommonInfrastructuredll" Name="Common.Infrastructure.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="CommonInfrastructuredll" Name="Common.Infrastructure.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
         Id="CommonMVVMdllComponent" Guid="4B38F562-02B9-40BC-B64A-4366FB447A5F">
-        <File Id="CommonMVVMdll" Name="Common.MVVM.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="CommonMVVMdll" Name="Common.MVVM.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
       Id="CommonNavigationdllComponent" Guid="61652548-3400-4BC7-8C14-44589293B75C">
-        <File Id="CommonNavigationdll" Name="Common.Navigation.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="CommonNavigationdll" Name="Common.Navigation.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
       Id="Common.RepositorydllComponent" Guid="C910A837-41B8-4676-83FE-354028A7D2BD">
-        <File Id="CommonRepositorydll" Name="Common.Repository.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
-      </Component>
-      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="CommonServiceLocatordllComponent" Guid="B7A118A8-0F5A-4057-8B32-17D5D729963A">
-        <File Id="CommonServiceLocatordll" Name="CommonServiceLocator.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="CommonRepositorydll" Name="Common.Repository.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
       Id="CommonUIdllComponent" Guid="0A8F0783-77DF-4CCD-93AB-ACF8F6285B13">
-        <File Id="CommonUIdll" Name="Common.UI.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="CommonUIdll" Name="Common.UI.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGADetaildllComponent" Guid="D04D0658-CFD9-4115-960D-E1B9A8AABC8C">
-        <File Id="VGADetaildll" Name="VGA.Detail.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+              Id="CommonServiceLocatordllComponent" Guid="B7A118A8-0F5A-4057-8B32-17D5D729963A">
+        <File Id="CommonServiceLocatordll" Name="CommonServiceLocator.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="DevExpressXpfCorev141dllComponent" Guid="FAC9D1B3-8BD5-4E14-8632-099FA09C8251">
+        <File Id="DevExpressXpfCorev141dll" Name="DevExpress.Xpf.Core.v14.1.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAEditordllComponent" Guid="A911FAA7-BCD5-4755-B404-E21BEA4E343F">
-        <File Id="VGAEditordll" Name="VGA.Editor.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+              Id="DevExpressXpfGridv141dllComponent" Guid="D0CD0F1D-E5FE-4415-88E3-241F173D9524">
+        <File Id="DevExpressXpfGridv141dll" Name="DevExpress.Xpf.Grid.v14.1.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAFilterdllComponent" Guid="5DFF670B-9ED6-46CB-935E-CF59A0DB6240">
-        <File Id="VGAFilterddll" Name="VGA.Filter.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+              Id="DevExpressXpfGridCorev141dllComponent" Guid="F8FEABE6-5249-4235-A855-FB5EBA5C588F">
+        <File Id="DevExpressXpfGridCorev141dll" Name="DevExpress.Xpf.Grid.v14.1.Core.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAIndexdllComponent" Guid="1F33166B-9A09-4B54-A995-0C24FA3DFCC4">
-        <File Id="VGAIndexdll" Name="VGA.Index.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+              Id="DevExpressXpfGridExtensionsv141dllComponent" Guid="91044697-5CAC-4008-845C-5CC16FBC5642">
+        <File Id="DevExpressXpfGridExtensionsv141dll" Name="DevExpress.Xpf.Grid.v14.1.Extensions.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAMainContentdllComponent" Guid="9EF44F88-F537-4544-9AAB-55C17396FEEE">
-        <File Id="VGAMainContentdll" Name="VGA.MainContent.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+              Id="DevExpressXpfThemesMetropolisDarkv1411dllComponent" Guid="2E078E4D-1EA6-433D-844A-5D323AF45222">
+        <File Id="DevExpress.XpfThemesMetropolisDarkv141dll" Name="DevExpress.Xpf.Themes.MetropolisDark.v14.1.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
-      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAMenudllComponent" Guid="98369C79-C52A-4EA6-B20D-CC757A21F705">
-        <File Id="VGAMenudll" Name="VGA.Menu.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
-      </Component>
-      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAOrdersdllComponent" Guid="635D5DB9-8413-43AE-A329-04CCDFDA01E1">
-        <File Id="VGAOrdersdll" Name="VGA.Orders.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
-      </Component>
-      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
-              Id="VGAStartMenudllComponent" Guid="F9D6C244-CFAF-4E69-8201-6515D8AD0CD4">
-        <File Id="VGAStartMenudll" Name="VGA.StartMenu.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
-      </Component>
+
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
                  Id="PrismdllComponent" Guid="BB639A9E-92DC-4B23-871C-2CC5F3CC136A">
-        <File Id="Prismdll" Name="Prism.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="Prismdll" Name="Prism.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
               Id="PrismWpfdllComponent" Guid="64FC78F5-4C1F-4606-821D-1840F0F80741">
-        <File Id="PrismWpfdll" Name="Prism.Wpf.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="PrismWpfdll" Name="Prism.Wpf.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
       <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
                     Id="SystemWindowsInteractivitydllComponent" Guid="EC091542-D816-485B-857C-0B76229B50C0">
-        <File Id="SystemWindowsInteractivitydll" Name="System.Windows.Interactivity.dll" Source="$(var.VipSky.TargetDir)" DiskId="1" />
+        <File Id="SystemWindowsInteractivitydll" Name="System.Windows.Interactivity.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGADetaildllComponent" Guid="D04D0658-CFD9-4115-960D-E1B9A8AABC8C">
+        <File Id="VGADetaildll" Name="VGA.Detail.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAEditordllComponent" Guid="A911FAA7-BCD5-4755-B404-E21BEA4E343F">
+        <File Id="VGAEditordll" Name="VGA.Editor.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAFilterdllComponent" Guid="5DFF670B-9ED6-46CB-935E-CF59A0DB6240">
+        <File Id="VGAFilterddll" Name="VGA.Filter.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAIndexdllComponent" Guid="1F33166B-9A09-4B54-A995-0C24FA3DFCC4">
+        <File Id="VGAIndexdll" Name="VGA.Index.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAMainContentdllComponent" Guid="9EF44F88-F537-4544-9AAB-55C17396FEEE">
+        <File Id="VGAMainContentdll" Name="VGA.MainContent.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAMenudllComponent" Guid="98369C79-C52A-4EA6-B20D-CC757A21F705">
+        <File Id="VGAMenudll" Name="VGA.Menu.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAOrdersdllComponent" Guid="635D5DB9-8413-43AE-A329-04CCDFDA01E1">
+        <File Id="VGAOrdersdll" Name="VGA.Orders.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
+      </Component>
+      <Component NeverOverwrite="no" UninstallWhenSuperseded="yes" Permanent="no"
+              Id="VGAStartMenudllComponent" Guid="F9D6C244-CFAF-4E69-8201-6515D8AD0CD4">
+        <File Id="VGAStartMenudll" Name="VGA.StartMenu.dll" Source="$(var.VipGuard.TargetDir)" DiskId="1" />
       </Component>
     </ComponentGroup>
 

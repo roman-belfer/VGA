@@ -2,6 +2,7 @@
 {
     public class BodyguardDto
     {
+        public bool IsMale { get; set; }
         public uint ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -10,7 +11,7 @@
         public uint Rate { get; set; }
         public string Phone { get; set; }
 
-        public BodyguardDto(uint id, string firstName, string surName, string lastName, uint rate, string phone)
+        public BodyguardDto(uint id, string firstName, string surName, string lastName, uint rate, string phone, bool isMale = true)
         {
             ID = id;
             FirstName = firstName;
@@ -19,6 +20,7 @@
             FullName = $"{LastName} {FirstName} {SurName}";
             Rate = rate;
             Phone = phone;
+            IsMale = isMale;
         }
     }
 }

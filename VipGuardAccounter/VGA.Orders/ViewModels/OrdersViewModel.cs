@@ -82,7 +82,7 @@ namespace VGA.Orders.ViewModels
 
         private void OnEdit(uint? id)
         {
-           // OrdersCollection.FirstOrDefault(x => x.ID == id).IsReadOnly = false;
+
         }
 
         private void OnDelete(uint? id)

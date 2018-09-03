@@ -1,5 +1,7 @@
 ﻿using System;
 using Common.Infrastructure;
+using Common.Infrastructure.DataModels;
+using Common.Infrastructure.Enums;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Views;
@@ -52,7 +54,7 @@ namespace VGA.Menu.ViewModels
                 }
             }
         }
-        
+
         public bool IsEmployeesEnabled
         {
             get { return _isEmployeesEnabled; }
@@ -104,6 +106,16 @@ namespace VGA.Menu.ViewModels
             get { return new DelegateCommand(OnSearch); }
         }
 
+        public DelegateCommand CreateEmployeeCommand
+        {
+            get { return new DelegateCommand(OnCreateEmployee); }
+        }
+
+        public DelegateCommand CreateOrderCommand
+        {
+            get { return new DelegateCommand(OnCreateOrder); }
+        }
+
         private void Init()
         {
             _eventAggregator.GetEvent<NavigationEvents.NavigateViewEvent>().Subscribe(OnNavigateView, ThreadOption.UIThread);
@@ -113,8 +125,8 @@ namespace VGA.Menu.ViewModels
         {
             IsHomeEnabled = !_navigator.IsFirstViewActive();
             IsSearchEnabled = _navigator.IsSearchAvailable();
-            IsEmployeesEnabled = !_navigator.IsFirstViewActive() && !_navigator.IsEmployeesActive();
-            IsOrdersEnabled = !_navigator.IsFirstViewActive() && !_navigator.IsOrdersActive();
+            IsEmployeesEnabled = _navigator.IsOrdersActive();
+            IsOrdersEnabled = _navigator.IsEmployeesActive();
         }
 
         private void OnHome()
@@ -140,6 +152,20 @@ namespace VGA.Menu.ViewModels
         private void OnSearch()
         {
             _navigator.Filter();
+        }
+
+        private void OnCreateEmployee()
+        {
+            _navigator.Edit();
+
+            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(new EditModel(EditModeEnum.NewEmployee));
+        }
+
+        private void OnCreateOrder()
+        {
+            _navigator.Edit();
+
+            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(new EditModel(EditModeEnum.NewOrder));
         }
     }
 }

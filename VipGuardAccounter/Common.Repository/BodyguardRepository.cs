@@ -24,7 +24,7 @@ namespace Common.Repository
                 },
                 new BodyguardDetailDto
                 {
-                    BaseInfo = new BodyguardDto(2, "Дмитрий", "Дмитриевич", "Дмитриев", 5, "0670042589")
+                    BaseInfo = new BodyguardDto(2, "Елена", "Дмитриевна", "Иванова", 5, "0670042589", false)
                 },
                 new BodyguardDetailDto
                 {

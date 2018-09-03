@@ -4,7 +4,10 @@ using Common.Infrastructure.Interfaces.Repositories;
 using Common.Infrastructure.Interfaces.Views;
 using Common.Navigation;
 using Common.Repository;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 using VGA.Detail.Views;
 using VGA.Editor.Views;
 using VGA.Filter.Views;
@@ -14,7 +17,7 @@ using VGA.Menu.Views;
 using VGA.Orders.Views;
 using VGA.StartMenu.Views;
 
-namespace Vipsky
+namespace VipGuard
 {
     public partial class App : Application
     {
@@ -23,6 +26,11 @@ namespace Vipsky
             Configure();
 
             Container.Resolve<INavigator>().Launch();
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
+                        XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
         private void Configure()

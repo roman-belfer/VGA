@@ -2,6 +2,7 @@
 using Common.Infrastructure.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Common.Repository
@@ -21,6 +22,11 @@ namespace Common.Repository
         public Task<IEnumerable<OrderDto>> GetOrdersCollection(SearchOrdersParameters searchParams)
         {
             return Task.Run(() => _ordersCollection);
+        }
+
+        public Task<OrderDto> GetOrderDetails(uint ID)
+        {
+            return Task.Run(() => _ordersCollection.FirstOrDefault(x => x.ID == ID));
         }
     }
 }

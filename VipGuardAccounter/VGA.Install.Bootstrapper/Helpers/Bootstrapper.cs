@@ -15,7 +15,7 @@ namespace VGA.Install.Bootstrapper
 
             BootstrapperModel.Instance.Bootstrapper = this;
 
-            ProcessHelper.KillProcess("VipSky");
+            ProcessHelper.KillProcess("VipGuard");
 
             //if (Environment.OSVersion.Version.Major < 10)
             //{

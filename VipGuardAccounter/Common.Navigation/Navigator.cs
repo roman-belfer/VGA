@@ -99,7 +99,7 @@ namespace Common.Navigation
 
         public bool IsFirstViewActive()
         {
-            return _currentView is IStartMenuView;
+            return _currentView is IIndexView;
         }
 
         public bool IsSearchAvailable()
@@ -130,7 +130,7 @@ namespace Common.Navigation
 
         private void LaunchFirstView()
         {
-            StartMenu();
+            Index();
         }
 
         private void LaunchMain()

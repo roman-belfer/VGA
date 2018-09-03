@@ -53,7 +53,7 @@ namespace VGA.Install.Bootstrapper.ViewModels
 
             if (Run)
             {
-                ProcessHelper.RunProcess(clientFolderPath, "VipSky.exe");
+                ProcessHelper.RunProcess(clientFolderPath, "VipGuard.exe");
             }
         }
         

@@ -1,82 +1,44 @@
-﻿using Common.Infrastructure;
+﻿using Common.Infrastructure.DataModels;
+using Common.Infrastructure.Enums;
 using Common.Infrastructure.Events;
-using Common.Infrastructure.Interfaces;
 using Common.MVVM;
-using Prism.Commands;
 using Prism.Events;
-using System.Threading.Tasks;
-using VGA.Editor.Models;
 
 namespace VGA.Editor.ViewModels
 {
     public class EditViewModel : BaseViewModel
     {
-        private readonly INavigator _navigator;
-        private readonly IBodyguardRepository _repository;
         private readonly IEventAggregator _eventAggregator;
-
-        private BodyguardModel _bodyguard;
 
         public EditViewModel()
         {
-            _navigator = Container.Resolve<INavigator>();
-            _repository = Container.Resolve<IBodyguardRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
             _eventAggregator.GetEvent<DataEvents.EditEvent>().Subscribe(OnEdit, ThreadOption.UIThread);
+
+            OrderEditViewModel = new OrderEditViewModel();
+            EmployeeEditViewModel = new EmployeeEditViewModel();
         }
 
-        public BodyguardModel Bodyguard
+        public BaseEditViewModel EmployeeEditViewModel { get; set; }
+        public BaseEditViewModel OrderEditViewModel { get; set; }
+
+        private void OnEdit(EditModel editModel)
         {
-            get { return _bodyguard; }
-            set
+            switch (editModel.EditMode)
             {
-                if (_bodyguard != value)
-                {
-                    _bodyguard = value;
-                    OnPropertyChanged(nameof(Bodyguard));
-                }
-            }
-        }
-
-        public DelegateCommand SaveCommand
-        {
-            get { return new DelegateCommand(OnSave); }
-        }
-
-        public DelegateCommand CancelCommand
-        {
-            get { return new DelegateCommand(OnCancel); }
-        }
-
-        private void OnCancel()
-        {
-            _navigator.Back();
-        }
-
-        private void OnSave()
-        {
-            //TO DO: Saving Logic
-
-            _navigator.Back();
-        }
-
-        private void OnEdit(uint? id)
-        {
-            Task.Run(async () => await EditAsync(id));
-        }
-
-        private async Task EditAsync(uint? id)
-        {
-            if (id.HasValue)
-            {
-                var detailDto = await _repository.GetBodyguardDetails(id.Value);
-
-                Bodyguard = BodyguardModel.ConvertToModel(detailDto);
-            }
-            else
-            {
-                Bodyguard = new BodyguardModel();
+                case EditModeEnum.EditEmployee:
+                    EmployeeEditViewModel.Edit(editModel.ID);
+                    break;
+                case EditModeEnum.EditOrder:
+                    OrderEditViewModel.Edit(editModel.ID);
+                    break;
+                case EditModeEnum.NewEmployee:
+                    EmployeeEditViewModel.Create();
+                    break;
+                case EditModeEnum.NewOrder:
+                    OrderEditViewModel.Create();
+                    break;
             }
         }
     }

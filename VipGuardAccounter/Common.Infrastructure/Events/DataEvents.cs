@@ -1,10 +1,11 @@
-﻿using Prism.Events;
+﻿using Common.Infrastructure.DataModels;
+using Prism.Events;
 
 namespace Common.Infrastructure.Events
 {
     public class DataEvents
     {
-        public class DetailEvent : PubSubEvent<uint> { }
-        public class EditEvent : PubSubEvent<uint?> { }
+        public class DetailEvent : PubSubEvent<EditModel> { }
+        public class EditEvent : PubSubEvent<EditModel> { }
     }
 }

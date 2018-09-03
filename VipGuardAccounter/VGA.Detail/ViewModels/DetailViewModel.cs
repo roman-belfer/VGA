@@ -1,4 +1,6 @@
 ﻿using Common.Infrastructure;
+using Common.Infrastructure.DataModels;
+using Common.Infrastructure.Enums;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.MVVM;
@@ -23,7 +25,7 @@ namespace VGA.Detail.ViewModels
             _repository = Container.Resolve<IBodyguardRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
-            _eventAggregator.GetEvent<DataEvents.DetailEvent>().Subscribe(OnDetail, ThreadOption.UIThread);
+            //_eventAggregator.GetEvent<DataEvents.DetailEvent>().Subscribe(OnDetail, ThreadOption.UIThread);
         }
 
         public BodyguardModel Bodyguard
@@ -48,7 +50,7 @@ namespace VGA.Detail.ViewModels
         {
             _navigator.Edit();
 
-            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(_bodyguard.ID);
+            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(new EditModel(_bodyguard.ID, EditModeEnum.EditEmployee));
         }
 
         private void OnDetail(uint id)

@@ -1,5 +1,6 @@
 ﻿using Common.Infrastructure.DataModels;
 using Common.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +9,13 @@ namespace VGA.Index.ViewModels
     public class ItemViewModel : BaseViewModel
     {
         private bool _isReadOnly;
+        private bool _isMale;
         private uint _id;
+        private uint _index;
         private uint _rate;
         private string _name;
         private string _phone;
+        private string _category;
 
         public bool IsReadOnly
         {
@@ -25,6 +29,18 @@ namespace VGA.Index.ViewModels
                 }
             }
         }
+        public bool IsMale
+        {
+            get { return _isMale; }
+            set
+            {
+                if (_isMale != value)
+                {
+                    _isMale = value;
+                    OnPropertyChanged(nameof(IsMale));
+                }
+            }
+        }
         public uint ID
         {
             get { return _id; }
@@ -34,6 +50,18 @@ namespace VGA.Index.ViewModels
                 {
                     _id = value;
                     OnPropertyChanged(nameof(ID));
+                }
+            }
+        }
+        public uint Index
+        {
+            get { return _index; }
+            set
+            {
+                if (_index != value)
+                {
+                    _index = value;
+                    OnPropertyChanged(nameof(Index));
                 }
             }
         }
@@ -73,18 +101,47 @@ namespace VGA.Index.ViewModels
                 }
             }
         }
+        public string Category
+        {
+            get { return _category; }
+            set
+            {
+                if (_category != value)
+                {
+                    _category = value;
+                    OnPropertyChanged(nameof(Category));
+                }
+            }
+        }
 
+        static Random rand;
+        static uint index;
         public static ItemViewModel ConvertFromDto(BodyguardDto dto)
         {
             var model = new ItemViewModel();
 
             if (dto != null)
             {
+                model.Index = index++;
                 model.IsReadOnly = true;
                 model.ID = dto.ID;
                 model.Rate = dto.Rate;
                 model.Phone = dto.Phone;
+                model.IsMale = dto.IsMale;
                 model.Name = string.Join(" ", dto.FirstName, dto.SurName, dto.LastName);
+
+                switch(rand.Next(2))
+                {
+                    case 0:
+                        model.Category = "A";
+                        break;
+                    case 1:
+                        model.Category = "B";
+                        break;
+                    case 2:
+                        model.Category = "C";
+                        break;
+                }
             }
 
             return model;
@@ -96,9 +153,12 @@ namespace VGA.Index.ViewModels
 
             if (dtos != null && dtos.Any())
             {
-                foreach (var d in dtos)
+                rand = new Random();
+                index = 0;
+                foreach (var d in dtos.ToList())
                 {
                     result.Add(ConvertFromDto(d));
+                    index++;
                 }
             }
 

@@ -5,13 +5,13 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="135"/>
             <ColumnDefinition />
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="135"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <controls:HomeButton Grid.Column="1" 
@@ -28,8 +28,16 @@
                                 Content="Список заказов"
                                 IsEnabled="{Binding IsOrdersEnabled}"
                                 Command="{Binding OrdersCommand}"/>
-        <controls:SearchButton Grid.Column="7" 
+        <controls:ContentButton Grid.Column="7" 
+                                Content="Новый сотрудник"
+                                IsEnabled="{Binding IsOrdersEnabled}"
+                                Command="{Binding CreateEmployeeCommand}"/>
+        <controls:ContentButton Grid.Column="7" 
+                                Content="Новый заказ"
+                                IsEnabled="{Binding IsEmployeesEnabled}"
+                                Command="{Binding CreateOrderCommand}"/>
+        <!--<controls:SearchButton Grid.Column="7" 
                                IsEnabled="{Binding IsSearchEnabled}"
-                               Command="{Binding SearchCommand}"/>
+                               Command="{Binding SearchCommand}"/>-->
     </Grid>
 </UserControl>

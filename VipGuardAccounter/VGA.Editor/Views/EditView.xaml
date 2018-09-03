@@ -4,66 +4,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:ui="clr-namespace:Common.UI;assembly=Common.UI"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:VGA.Editor.Views"
              Background="#6a6969">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="10"/>
-        </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="20" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid >
-                        <Image Source="pack://application:,,,/VGA.Detail;component/Resources/no_photo.png"
-                           Width="200" Height="250"/>
-                        <Image Source="{Binding Bodyguard.Photo}"
-                           Width="200" Height="250"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <TextBlock Text="{Binding Bodyguard.FullName}"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               FontSize="30"
-                               FontWeight="DemiBold"/>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
-
-        <!-- Button Panel-->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <Button Content="Сохранить" 
-                    Grid.Column="1"
-                    Command="{Binding SaveCommand}"/>
-            <Button Content="Отменить" 
-                    Grid.Column="3"
-                    Command="{Binding CancelCommand}"/>
-        </Grid>
+        <local:EmployeeEditView DataContext="{Binding EmployeeEditViewModel}"/>
+        <local:OrderEditView DataContext="{Binding OrderEditViewModel}"/>
     </Grid>
 </ui:BaseView>

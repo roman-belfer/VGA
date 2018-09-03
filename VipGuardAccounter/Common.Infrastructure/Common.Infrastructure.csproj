@@ -74,10 +74,12 @@
     <Compile Include="Container.cs" />
     <Compile Include="DataModels\BodyguardDetailDto.cs" />
     <Compile Include="DataModels\BodyguardDto.cs" />
+    <Compile Include="DataModels\EditModel.cs" />
     <Compile Include="DataModels\OrderDto.cs" />
     <Compile Include="DataModels\SearchParameters\SearchOrdersParameters.cs" />
     <Compile Include="DataModels\SearchParameters\SearchBodyguardsParameters.cs" />
     <Compile Include="DataModels\ValueModel.cs" />
+    <Compile Include="Enums\EditModeEnum.cs" />
     <Compile Include="Events\DataEvents.cs" />
     <Compile Include="Events\EventContainer.cs" />
     <Compile Include="Events\NavigationEvents.cs" />

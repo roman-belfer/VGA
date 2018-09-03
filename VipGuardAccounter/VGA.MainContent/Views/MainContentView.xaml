@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Height="600" Width="900"
+        Height="700" Width="1200"
         Name="mainContentView">
 
     <Window.Resources>

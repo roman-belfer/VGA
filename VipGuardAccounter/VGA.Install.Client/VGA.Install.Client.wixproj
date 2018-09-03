@@ -44,7 +44,7 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="vipsky_icon.ico" />
+    <Content Include="vipguard_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VGA.Install.Bootstrapper\VGA.Install.Bootstrapper.csproj">
@@ -55,8 +55,8 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\VipGuardAccounter\Vipsky.csproj">
-      <Name>VipSky</Name>
+    <ProjectReference Include="..\VipGuardAccounter\VipGuard.csproj">
+      <Name>VipGuard</Name>
       <Project>{13b994c7-960d-423f-8302-2eba7983ff11}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

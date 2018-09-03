@@ -11,6 +11,7 @@ namespace VGA.Orders.ViewModels
         private uint _id;
         private double _totalPrice;
         private double _prepayment;
+        private double _afterpayment;
         private string _employee;
         private DateTime _startDate;
         private DateTime _endDate;
@@ -50,6 +51,19 @@ namespace VGA.Orders.ViewModels
                 {
                     _prepayment = value;
                     OnPropertyChanged(nameof(Prepayment));
+                }
+            }
+        }
+        
+        public double Afterpayment
+        {
+            get { return _afterpayment; }
+            set
+            {
+                if (_afterpayment != value)
+                {
+                    _afterpayment = value;
+                    OnPropertyChanged(nameof(Afterpayment));
                 }
             }
         }
@@ -102,6 +116,7 @@ namespace VGA.Orders.ViewModels
                 model.ID = dto.ID;
                 model.TotalPrice = dto.TotalPrice;
                 model.Prepayment = dto.Prepayment;
+                model.Afterpayment = model.TotalPrice - model.Prepayment;
                 model.StartDate = dto.StartDate;
                 model.EndDate = dto.EndDate;
                 model.Employee = employees != null && employees.ContainsKey(dto.BodyguardID) 

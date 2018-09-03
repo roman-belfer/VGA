@@ -1,5 +1,6 @@
 ﻿using Common.Infrastructure;
 using Common.Infrastructure.DataModels;
+using Common.Infrastructure.Enums;
 using Common.Infrastructure.Events;
 using Common.Infrastructure.Interfaces;
 using Common.MVVM;
@@ -80,7 +81,8 @@ namespace VGA.Index.ViewModels
 
         private void OnEdit(uint? id)
         {
-            BodyguardCollection.FirstOrDefault(x => x.ID == id).IsReadOnly = false;
+            _navigator.Edit();
+            _eventAggregator.GetEvent<DataEvents.EditEvent>().Publish(new EditModel(id.Value, EditModeEnum.EditEmployee));
         }
 
         private void OnDelete(uint? id)
@@ -115,7 +117,7 @@ namespace VGA.Index.ViewModels
             if (id.HasValue)
             {
                 _navigator.Detail();
-                _eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
+                //_eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
             }
         }
     }

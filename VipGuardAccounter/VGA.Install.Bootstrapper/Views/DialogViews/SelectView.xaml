@@ -119,7 +119,7 @@
         <Grid Visibility="{Binding Path=IsInstalled, Converter={StaticResource BoolToVisibilityCollapsedConverter}}" Grid.Column="0">
             <TextBlock
                 Margin="0,10,0,0"
-                Text="Установить программу VipSky" 
+                Text="Установить программу VipGuard" 
                 FontSize="11" 
                 FontFamily="Calibri" 
                 Foreground="White" />

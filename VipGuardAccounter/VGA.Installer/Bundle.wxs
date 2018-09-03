@@ -4,12 +4,12 @@
 		 xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
-  <?define AppName = VipSky ?>
-  <?define ManufacturerName = VipSky ?>
+  <?define AppName = VipGuard ?>
+  <?define ManufacturerName = VipGuard ?>
 
 
   <Bundle Name="$(var.AppName)" Version="$(var.BuildVersion)"
-					IconSourceFile="vipsky_icon.ico" Manufacturer="$(var.ManufacturerName)" UpgradeCode="{7F6BC7C2-2B50-448A-9F34-B1EE2276EB5C}"> 
+					IconSourceFile="vipguard_icon.ico" Manufacturer="$(var.ManufacturerName)" UpgradeCode="{7F6BC7C2-2B50-448A-9F34-B1EE2276EB5C}"> 
     
     <BootstrapperApplicationRef Id ="ManagedBootstrapperApplicationHost">      
       <PayloadGroupRef Id ="InstallerPayload" />
@@ -23,7 +23,7 @@
 
    <Chain>
        <PackageGroupRef Id="NetFx452Installer"/>  
-       <MsiPackage Id="VipskyClient" SourceFile="$(var.VGA.Install.Client.TargetPath)" Permanent="no" Vital="yes" Compressed="yes" Visible="no">
+       <MsiPackage Id="VipGuardClient" SourceFile="$(var.VGA.Install.Client.TargetPath)" Permanent="no" Vital="yes" Compressed="yes" Visible="no">
         <MsiProperty Name="MANUFACTURERFOLDER" Value="[BurnVariable]"/>
       </MsiPackage>    
     </Chain>
@@ -32,7 +32,7 @@
   <Fragment>
     <PayloadGroup Id="InstallerPayload">
       <Payload SourceFile="$(var.VGA.Install.Bootstrapper.TargetPath)"/>
-      <Payload SourceFile="$(var.Vipsky.TargetPath)"/>
+      <Payload SourceFile="$(var.VipGuard.TargetPath)"/>
       <Payload SourceFile="BootstrapperCore.config" />
       <Payload SourceFile="$(var.VGA.Install.Bootstrapper.TargetDir)Microsoft.Deployment.WindowsInstaller.dll" />
     </PayloadGroup>
