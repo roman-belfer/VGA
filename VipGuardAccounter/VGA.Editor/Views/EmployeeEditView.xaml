@@ -44,7 +44,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Style>
-    <Grid>
+    <Grid Visibility="{Binding IsActive, Converter={x:Static commonConverters:BooleanToVisibilityConverter.FalseToCollapsed}}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="10"/>
