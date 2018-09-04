@@ -2,6 +2,7 @@
 
 namespace Common.Infrastructure.DataModels
 {
+    [Serializable]
     public class BodyguardDto
     {
         #region Properties

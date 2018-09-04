@@ -1,6 +1,7 @@
 ﻿using Common.Infrastructure.DataModels;
 using Common.Infrastructure.Interfaces.Repositories;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
