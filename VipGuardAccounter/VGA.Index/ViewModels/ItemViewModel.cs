@@ -2,7 +2,6 @@
 using Common.MVVM;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace VGA.Index.ViewModels
@@ -130,7 +129,7 @@ namespace VGA.Index.ViewModels
                 model.IsMale = dto.IsMale;
                 model.Name = string.Join(" ", dto.FirstName, dto.SurName, dto.LastName);
 
-                switch(rand.Next(2))
+                switch (rand.Next(2))
                 {
                     case 0:
                         model.Category = "A";
@@ -163,36 +162,6 @@ namespace VGA.Index.ViewModels
             }
 
             return result;
-        }
-
-        public static IEnumerable<BodyguardDto> ConvertToDto(IEnumerable<ItemViewModel> collection)
-        {
-            var result = new List<BodyguardDto>();
-
-            if (collection != null && collection.Any())
-            {
-                foreach (var d in collection)
-                {
-                    result.Add(ConvertToDto(d));
-                }
-            }
-
-            return result;
-        }
-
-        public static BodyguardDto ConvertToDto(ItemViewModel item)
-        {
-            var model = new BodyguardDto();
-
-            if (item != null)
-            {
-                model.ID = item.ID;
-                model.Rate = item.Rate;
-                model.Phone = item.Phone;
-                model.FullName = item.Name;
-            }
-
-            return model;
         }
     }
 }

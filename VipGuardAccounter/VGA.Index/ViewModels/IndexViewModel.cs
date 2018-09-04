@@ -21,7 +21,6 @@ namespace VGA.Index.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         private bool _isDataLoading;
-        private ItemViewModel _selectedBodyguard;
         private ObservableCollection<ItemViewModel> _bodyguardCollection;
 
         public IndexViewModel()
@@ -48,19 +47,6 @@ namespace VGA.Index.ViewModels
             }
         }
 
-        public ItemViewModel SelectedBodyguard
-        {
-            get { return _selectedBodyguard; }
-            set
-            {
-                if (_selectedBodyguard != value)
-                {
-                    _selectedBodyguard = value;
-                    OnPropertyChanged(nameof(SelectedBodyguard));
-                }
-            }
-        }
-
         public ObservableCollection<ItemViewModel> BodyguardCollection
         {
             get { return _bodyguardCollection; }
@@ -72,11 +58,6 @@ namespace VGA.Index.ViewModels
                     OnPropertyChanged(nameof(BodyguardCollection));
                 }
             }
-        }
-
-        public DelegateCommand ItemChangedCommand
-        {
-            get { return new DelegateCommand(OnItemChanged); }
         }
 
         public DelegateCommand<uint?> DetailCommand
@@ -139,15 +120,6 @@ namespace VGA.Index.ViewModels
                 _navigator.Detail();
                 //_eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
             }
-        }
-
-        private void OnItemChanged()
-        {
-            Task.Run(async () =>
-            {
-                var item = ItemViewModel.ConvertToDto(SelectedBodyguard);
-                await _repository.Edit(item);
-            });
         }
     }
 }

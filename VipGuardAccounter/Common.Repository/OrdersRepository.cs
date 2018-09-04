@@ -19,12 +19,12 @@ namespace Common.Repository
             };
         }
 
-        public Task<IEnumerable<OrderDto>> GetOrdersCollection(SearchOrdersParameters searchParams)
+        public Task<IEnumerable<OrderDto>> GetCollection(SearchOrdersParameters searchParams)
         {
             return Task.Run(() => _ordersCollection);
         }
 
-        public Task<OrderDto> GetOrderDetails(uint ID)
+        public Task<OrderDto> GetDetail(uint ID)
         {
             return Task.Run(() => _ordersCollection.FirstOrDefault(x => x.ID == ID));
         }

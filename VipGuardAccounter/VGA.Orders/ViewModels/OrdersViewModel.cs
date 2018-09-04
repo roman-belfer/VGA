@@ -103,8 +103,8 @@ namespace VGA.Orders.ViewModels
 
         private async Task SearchAsync(SearchOrdersParameters searchParams)
         {
-            var ordersCollection = await _repository.GetOrdersCollection(searchParams);
-            var bodyguards = await _bodyguardsRepository.GetBodyguardsCollection(null);
+            var ordersCollection = await _repository.GetCollection(searchParams);
+            var bodyguards = await _bodyguardsRepository.GetCollection(null);
             var models = ItemViewModel.ConvertFromDto(ordersCollection, bodyguards.ToDictionary(o => o.ID, o => o.LastName));
             OrdersCollection = new ObservableCollection<ItemViewModel>(models);
 

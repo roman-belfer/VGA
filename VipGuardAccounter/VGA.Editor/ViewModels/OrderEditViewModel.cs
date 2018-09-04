@@ -41,7 +41,7 @@ namespace VGA.Editor.ViewModels
 
             Task.Run(async () =>
             {
-                var detailDto = await _repository.GetOrderDetails(id);
+                var detailDto = await _repository.GetDetail(id);
 
                 Order = OrderModel.ConvertToModel(detailDto);
             });

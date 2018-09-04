@@ -6,7 +6,7 @@ namespace Common.Infrastructure.Interfaces.Repositories
 {
     public interface IOrdersRepository
     {
-        Task<IEnumerable<OrderDto>> GetOrdersCollection(SearchOrdersParameters searchParams);
-        Task<OrderDto> GetOrderDetails(uint ID);
+        Task<IEnumerable<OrderDto>> GetCollection(SearchOrdersParameters searchParams);
+        Task<OrderDto> GetDetail(uint ID);
     }
 }

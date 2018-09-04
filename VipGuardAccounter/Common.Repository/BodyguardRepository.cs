@@ -1,7 +1,6 @@
 ﻿using Common.Infrastructure.DataModels;
 using Common.Infrastructure.Interfaces.Repositories;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,12 +22,12 @@ namespace Common.Repository
             };
         }
 
-        public Task<BodyguardDto> GetBodyguardDetails(uint ID)
+        public Task<BodyguardDto> GetDetail(uint ID)
         {
             return Task.Run(() => _bodyguardCollection.FirstOrDefault(x => x.ID == ID));
         }
 
-        public Task<IEnumerable<BodyguardDto>> GetBodyguardsCollection(SearchBodyguardsParameters searchParams)
+        public Task<IEnumerable<BodyguardDto>> GetCollection(SearchBodyguardsParameters searchParams)
         {
             return Task.Run(() => _bodyguardCollection);
         }

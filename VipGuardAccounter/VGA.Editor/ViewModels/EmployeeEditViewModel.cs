@@ -263,7 +263,7 @@ namespace VGA.Editor.ViewModels
 
             Task.Run(async () =>
             {
-                var dto = await _repository.GetBodyguardDetails(id);
+                var dto = await _repository.GetDetail(id);
 
                 ConvertFromDto(dto);
             });

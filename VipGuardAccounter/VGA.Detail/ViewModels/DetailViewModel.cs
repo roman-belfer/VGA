@@ -45,7 +45,7 @@ namespace VGA.Detail.ViewModels
 
         private async Task DetailAsync(uint id)
         {
-            var detailDto = await _repository.GetBodyguardDetails(id);
+            var detailDto = await _repository.GetDetail(id);
 
             //Bodyguard = BodyguardModel.ConvertToModel(detailDto);
         }
