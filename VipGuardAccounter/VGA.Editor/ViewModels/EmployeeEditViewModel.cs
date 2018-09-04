@@ -1,6 +1,10 @@
 ﻿using Common.Infrastructure;
+using Common.Infrastructure.DataModels;
 using Common.Infrastructure.Interfaces;
+using Common.Infrastructure.Interfaces.Repositories;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace VGA.Editor.ViewModels
@@ -8,7 +12,9 @@ namespace VGA.Editor.ViewModels
     public class EmployeeEditViewModel : BaseEditViewModel
     {
         private readonly IBodyguardRepository _repository;
+        private readonly IDictionaryRepository _dictionaryRepository;
 
+        private uint _id;
         private string _firstName;
         private string _surName;
         private string _lastName;
@@ -17,12 +23,26 @@ namespace VGA.Editor.ViewModels
         private bool _isMale = true;
         private string _city;
         private string _address;
+        private uint _categoryId = 0;
+        private bool _isEnglish;
+        private bool _isShortGun;
+        private bool _isRiffle;
+        private string _personalWeapon;
+        private string _driverLicense;
+        private int _weight;
+        private int _height;
 
         public EmployeeEditViewModel()
         {
             _repository = Container.Resolve<IBodyguardRepository>();
+            _dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+
+            CategoryCollection = _dictionaryRepository.GetCategoryCollection().ToList();
         }
 
+        public List<ValueModel> CategoryCollection { get; set; }
+
+        #region Properties
         public string FirstName
         {
             get { return _firstName; }
@@ -88,6 +108,32 @@ namespace VGA.Editor.ViewModels
             }
         }
 
+        public int Weight
+        {
+            get { return _weight; }
+            set
+            {
+                if (_weight != value)
+                {
+                    _weight = value;
+                    OnPropertyChanged(nameof(Weight));
+                }
+            }
+        }
+
+        public int Height
+        {
+            get { return _height; }
+            set
+            {
+                if (_height != value)
+                {
+                    _height = value;
+                    OnPropertyChanged(nameof(Height));
+                }
+            }
+        }
+
         public bool IsMale
         {
             get { return _isMale; }
@@ -97,6 +143,71 @@ namespace VGA.Editor.ViewModels
                 {
                     _isMale = value;
                     OnPropertyChanged(nameof(IsMale));
+                }
+            }
+        }
+
+        public bool IsShortGun
+        {
+            get { return _isShortGun; }
+            set
+            {
+                if (_isShortGun != value)
+                {
+                    _isShortGun = value;
+                    OnPropertyChanged(nameof(IsShortGun));
+                }
+            }
+        }
+
+        public bool IsRiffle
+        {
+            get { return _isRiffle; }
+            set
+            {
+                if (_isRiffle != value)
+                {
+                    _isRiffle = value;
+                    OnPropertyChanged(nameof(IsRiffle));
+                }
+            }
+        }
+
+        public bool IsEnglish
+        {
+            get { return _isEnglish; }
+            set
+            {
+                if (_isEnglish != value)
+                {
+                    _isEnglish = value;
+                    OnPropertyChanged(nameof(IsEnglish));
+                }
+            }
+        }
+
+        public string DriverLicense
+        {
+            get { return _driverLicense; }
+            set
+            {
+                if (_driverLicense != value)
+                {
+                    _driverLicense = value;
+                    OnPropertyChanged(nameof(DriverLicense));
+                }
+            }
+        }
+
+        public string PersonalWeapon
+        {
+            get { return _personalWeapon; }
+            set
+            {
+                if (_personalWeapon != value)
+                {
+                    _personalWeapon = value;
+                    OnPropertyChanged(nameof(PersonalWeapon));
                 }
             }
         }
@@ -127,6 +238,20 @@ namespace VGA.Editor.ViewModels
             }
         }
 
+        public uint CategoryId
+        {
+            get { return _categoryId; }
+            set
+            {
+                if (_categoryId != value)
+                {
+                    _categoryId = value;
+                    OnPropertyChanged(nameof(CategoryId));
+                }
+            }
+        }
+        #endregion
+
         public override void Create()
         {
             base.Create();
@@ -136,12 +261,59 @@ namespace VGA.Editor.ViewModels
         {
             base.Edit(id);
 
-            Task.Run(async() =>
+            Task.Run(async () =>
             {
-                var detailDto = await _repository.GetBodyguardDetails(id);
+                var dto = await _repository.GetBodyguardDetails(id);
 
-               // Bodyguard = BodyguardModel.ConvertToModel(detailDto);
+                ConvertFromDto(dto);
             });
+        }
+
+        private BodyguardDto ConvertToDto()
+        {
+            var dto = new BodyguardDto()
+            {
+                Address = Address,
+                BirthDate = BirthDate,
+                CategoryId = CategoryId,
+                City = City,
+                DriverLicense = DriverLicense,
+                FirstName = FirstName,
+                Height = Height,
+                IsEnglish = IsEnglish,
+                ID = _id,
+                IsMale = IsMale,
+                IsRiffle = IsRiffle,
+                IsShortGun = IsShortGun,
+                LastName = LastName,
+                PersonalWeapon = PersonalWeapon,
+                Phone = Phone,
+                SurName = SurName,
+                Weight = Weight
+            };
+
+            return dto;
+        }
+
+        private void ConvertFromDto(BodyguardDto dto)
+        {
+            Address = dto.Address;
+            BirthDate = dto.BirthDate;
+            CategoryId = dto.CategoryId;
+            City = dto.City;
+            DriverLicense = dto.DriverLicense;
+            FirstName = dto.FirstName;
+            Height = dto.Height;
+            IsEnglish = dto.IsEnglish;
+            _id = dto.ID;
+            IsMale = dto.IsMale;
+            IsRiffle = dto.IsRiffle;
+            IsShortGun = dto.IsShortGun;
+            LastName = dto.LastName;
+            PersonalWeapon = dto.PersonalWeapon;
+            Phone = dto.Phone;
+            SurName = dto.SurName;
+            Weight = dto.Weight;
         }
 
         protected override void OnSave()

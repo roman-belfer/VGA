@@ -13,5 +13,7 @@ namespace Common.Infrastructure.Interfaces.Repositories
         IEnumerable<ValueModel> GetHandgunBulletCollection();
         IEnumerable<ValueModel> GetRifleCollection();
         IEnumerable<ValueModel> GetRifleBulletCollection();
+        IEnumerable<ValueModel> GetCategoryCollection();
+
     }
 }

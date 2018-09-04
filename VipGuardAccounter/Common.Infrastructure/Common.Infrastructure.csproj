@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
-    <Compile Include="DataModels\BodyguardDetailDto.cs" />
     <Compile Include="DataModels\BodyguardDto.cs" />
     <Compile Include="DataModels\EditModel.cs" />
     <Compile Include="DataModels\OrderDto.cs" />

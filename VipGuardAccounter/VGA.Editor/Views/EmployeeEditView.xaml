@@ -6,8 +6,7 @@
              xmlns:converters="clr-namespace:VGA.Editor.Converters"
              xmlns:commonConverters="clr-namespace:Common.MVVM.Converters;assembly=Common.MVVM"
              dx:ThemeManager.ThemeName="MetropolisDark" 
-             Name="employeeEditView"
-             Opacity="0">
+             Name="employeeEditView">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:StringToPhoneConverter x:Key="StringToPhoneConverter"/>
@@ -115,6 +114,10 @@
                                 <RowDefinition Height="24" />
                                 <RowDefinition Height="20" />
                                 <RowDefinition Height="24" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="24" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="24" />
                             </Grid.RowDefinitions>
 
                             <TextBlock Text="Имя" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -128,6 +131,8 @@
                             <TextBlock Grid.Column="8" HorizontalAlignment="Right" Text="Фамилия" VerticalAlignment="Center" />
                             <TextBox Grid.Column="10" Text="{Binding LastName, Mode=TwoWay}"
                                  VerticalContentAlignment="Center"/>
+
+                            <!-- -->
 
                             <TextBlock Grid.Row="2" HorizontalAlignment="Right" Text="Дата рождения" VerticalAlignment="Center" />
                             <dxe:DateEdit Grid.Row="2" Grid.Column="2" DateTime="{Binding BirthDate, Mode=TwoWay}"/>
@@ -144,6 +149,8 @@
                                 <RadioButton Content="Женский" Cursor="Hand"
                                          Foreground="White" IsChecked="{Binding IsMale, Mode=TwoWay, Converter={StaticResource BoolInvertConverter}}"/>
                             </StackPanel>
+
+                            <!-- -->
 
                             <TextBlock Grid.Row="4" HorizontalAlignment="Right" Text="Город" VerticalAlignment="Center" />
                             <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding City, Mode=TwoWay}"
@@ -174,6 +181,40 @@
                                  VerticalContentAlignment="Center" Width="80" HorizontalAlignment="Left"/>
 
                             </Grid>
+
+                            <!-- -->
+
+                            <TextBlock Grid.Row="6" Text="Вод. Удост." ToolTip="Водительское Удостоверение" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding DriverLicense, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center"/>
+
+                            <dxe:CheckEdit Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="3" Width="100" HorizontalAlignment="Left" 
+                                           Foreground="#ffffff" Content="Пистолет" Margin="40 0 0 0"
+                                           IsChecked="{Binding IsShortGun, Mode=TwoWay}"/>
+                            <dxe:CheckEdit Grid.Row="6" Grid.Column="5" Width="65" HorizontalAlignment="Left" 
+                                           Foreground="#ffffff" Grid.ColumnSpan="3" Content="Карабин" Margin="80 0 0 0"
+                                           IsChecked="{Binding IsRiffle, Mode=TwoWay}"/>
+
+                            <TextBlock Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="3" HorizontalAlignment="Right" Text="Личное оружие" VerticalAlignment="Center" 
+                                       Visibility="{Binding IsShortGun, Converter={x:Static commonConverters:BooleanToVisibilityConverter.FalseToCollapsed}}"/>
+                            <TextBox Grid.Row="6" Grid.Column="10" Text="{Binding PersonalWeapon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center" Visibility="{Binding IsShortGun, Converter={x:Static commonConverters:BooleanToVisibilityConverter.FalseToCollapsed}}"/>
+
+                            <TextBlock Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="3" HorizontalAlignment="Right" Text="Личное оружие" VerticalAlignment="Center" 
+                                       Visibility="{Binding IsRiffle, Converter={x:Static commonConverters:BooleanToVisibilityConverter.FalseToCollapsed}}"/>
+                            <TextBox Grid.Row="6" Grid.Column="10" Text="{Binding PersonalWeapon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center" Visibility="{Binding IsRiffle, Converter={x:Static commonConverters:BooleanToVisibilityConverter.FalseToCollapsed}}"/>
+
+                            <!-- -->
+
+                            <dxe:CheckEdit Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" 
+                                           Foreground="#ffffff" Content="Знание английского"
+                                           IsChecked="{Binding IsEnglish, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="8" Grid.Column="4" HorizontalAlignment="Right" Text="Категория" VerticalAlignment="Center" />
+                            <dxe:ComboBoxEdit Grid.Row="8" Grid.Column="6" HorizontalAlignment="Left" Width="80"
+                                              EditValue="{Binding CategoryId, Mode=TwoWay}" DisplayMember="Value" ValueMember="ID"
+                                              ItemsSource="{Binding CategoryCollection, Mode=TwoWay}"/>
 
                         </Grid>
                     </Grid>

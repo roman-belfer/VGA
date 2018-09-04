@@ -102,5 +102,15 @@ namespace Common.Repository
                 new ValueModel(7, "120")
             };
         }
+
+        public IEnumerable<ValueModel> GetCategoryCollection()
+        {
+            return new List<ValueModel>()
+            {
+                new ValueModel(0, "A"),
+                new ValueModel(1, "B"),
+                new ValueModel(2, "C")
+            };
+        }
     }
 }

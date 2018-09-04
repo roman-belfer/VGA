@@ -105,7 +105,7 @@ namespace VGA.Orders.ViewModels
         {
             var ordersCollection = await _repository.GetOrdersCollection(searchParams);
             var bodyguards = await _bodyguardsRepository.GetBodyguardsCollection(null);
-            var models = ItemViewModel.ConvertFromDto(ordersCollection, bodyguards.ToDictionary(o => o.ID, o => o.FullName));
+            var models = ItemViewModel.ConvertFromDto(ordersCollection, bodyguards.ToDictionary(o => o.ID, o => o.LastName));
             OrdersCollection = new ObservableCollection<ItemViewModel>(models);
 
             await Task.Delay(4000);

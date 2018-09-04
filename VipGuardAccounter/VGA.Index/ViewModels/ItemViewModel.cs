@@ -125,7 +125,6 @@ namespace VGA.Index.ViewModels
                 model.Index = index++;
                 model.IsReadOnly = true;
                 model.ID = dto.ID;
-                model.Rate = dto.Rate;
                 model.Phone = dto.Phone;
                 model.IsMale = dto.IsMale;
                 model.Name = string.Join(" ", dto.FirstName, dto.SurName, dto.LastName);
