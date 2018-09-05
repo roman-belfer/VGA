@@ -8,5 +8,7 @@ namespace Common.Infrastructure.Interfaces.Repositories
     {
         Task<IEnumerable<BodyguardDto>> GetCollection(SearchBodyguardsParameters searchParams);
         Task<BodyguardDto> GetDetail(uint ID);
+        void Save(BodyguardDto dto);
+        void Delete(uint id);
     }
 }

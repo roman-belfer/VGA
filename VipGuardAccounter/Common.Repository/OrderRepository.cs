@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Common.Repository
 {
-    public class OrdersRepository : IOrdersRepository
+    public class OrderRepository : IOrderRepository
     {
         private IEnumerable<OrderDto> _ordersCollection;
 
-        public OrdersRepository()
+        public OrderRepository()
         {
             _ordersCollection = new List<OrderDto>()
             {

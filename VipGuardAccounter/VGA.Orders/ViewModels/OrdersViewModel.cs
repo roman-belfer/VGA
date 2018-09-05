@@ -15,7 +15,7 @@ namespace VGA.Orders.ViewModels
     public class OrdersViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        private readonly IOrdersRepository _repository;
+        private readonly IOrderRepository _repository;
         private readonly IBodyguardRepository _bodyguardsRepository;
         private readonly IEventAggregator _eventAggregator;
 
@@ -25,7 +25,7 @@ namespace VGA.Orders.ViewModels
         public OrdersViewModel()
         {
             _navigator = Container.Resolve<INavigator>();
-            _repository = Container.Resolve<IOrdersRepository>();
+            _repository = Container.Resolve<IOrderRepository>();
             _bodyguardsRepository = Container.Resolve<IBodyguardRepository>();
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 

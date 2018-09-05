@@ -7,9 +7,7 @@ using Common.Infrastructure.Interfaces.Repositories;
 using Common.MVVM;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace VGA.Index.ViewModels
@@ -30,6 +28,7 @@ namespace VGA.Index.ViewModels
             _eventAggregator = EventContainer.EventInstance.EventAggregator;
 
             _eventAggregator.GetEvent<SearchEvents.SearchBodyguardsEvent>().Subscribe(OnSearch, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<RepositoryEvents.BodyguardRepositoryChanged>().Subscribe(OnRepositoryChanged, ThreadOption.UIThread);
 
             InitCollection();
         }
@@ -88,10 +87,9 @@ namespace VGA.Index.ViewModels
 
         private void OnDelete(uint? id)
         {
-            var item = BodyguardCollection.FirstOrDefault(x => x.ID == id);
-            if (item != null)
+            if (id.HasValue)
             {
-                BodyguardCollection.Remove(item);
+                _repository.Delete(id.Value);
             }
         }
 
@@ -107,9 +105,7 @@ namespace VGA.Index.ViewModels
             var bodyguardsCollection = await _repository.GetCollection(searchParams);
             var models = ItemViewModel.ConvertFromDto(bodyguardsCollection);
             BodyguardCollection = new ObservableCollection<ItemViewModel>(models);
-
-            await Task.Delay(4000);
-
+            
             IsDataLoading = false;
         }
 
@@ -120,6 +116,11 @@ namespace VGA.Index.ViewModels
                 _navigator.Detail();
                 //_eventAggregator.GetEvent<DataEvents.DetailEvent>().Publish(id.Value);
             }
+        }
+
+        private void OnRepositoryChanged()
+        {
+            InitCollection();
         }
     }
 }

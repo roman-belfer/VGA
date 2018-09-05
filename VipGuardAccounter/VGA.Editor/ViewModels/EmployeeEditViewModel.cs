@@ -1,6 +1,5 @@
 ﻿using Common.Infrastructure;
 using Common.Infrastructure.DataModels;
-using Common.Infrastructure.Interfaces;
 using Common.Infrastructure.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
@@ -318,7 +317,9 @@ namespace VGA.Editor.ViewModels
 
         protected override void OnSave()
         {
-            //TO DO: Save logic
+            var dto = ConvertToDto();
+            _repository.Save(dto);
+
             base.OnSave();
         }
     }

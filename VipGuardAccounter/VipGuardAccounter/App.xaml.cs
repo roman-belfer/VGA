@@ -40,7 +40,7 @@ namespace VipGuard
 
             Container.Register<IDictionaryRepository, DictionaryRepository>();
             Container.Register<IBodyguardRepository, BodyguardRepository>();
-            Container.Register<IOrdersRepository, OrdersRepository>();
+            Container.Register<IOrderRepository, OrderRepository>();
 
             Container.Register<IDetailView, DetailView>();
             Container.Register<IFilterView, FilterView>();

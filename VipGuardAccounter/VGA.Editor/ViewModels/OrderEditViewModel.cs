@@ -7,12 +7,12 @@ namespace VGA.Editor.ViewModels
 {
     public class OrderEditViewModel : BaseEditViewModel
     {
-        private readonly IOrdersRepository _repository;
+        private readonly IOrderRepository _repository;
         private OrderModel _order;
 
         public OrderEditViewModel()
         {
-            _repository = Container.Resolve<IOrdersRepository>();
+            _repository = Container.Resolve<IOrderRepository>();
         }
 
         public OrderModel Order

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Common.Infrastructure.Interfaces.Repositories
 {
-    public interface IOrdersRepository
+    public interface IOrderRepository
     {
         Task<IEnumerable<OrderDto>> GetCollection(SearchOrdersParameters searchParams);
         Task<OrderDto> GetDetail(uint ID);
